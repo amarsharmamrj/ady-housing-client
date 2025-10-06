@@ -1,6 +1,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* breakpoints */
+  --breakpoint-max-width: 1400px
 }
 
 @media (prefers-color-scheme: dark) {

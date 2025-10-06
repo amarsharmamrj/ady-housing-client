@@ -1,0 +1,19 @@
+.toolbar {
+    justify-content: space-between;
+    max-width: var(--breakpoint-max-width);
+    margin: 0 auto 0 auto;
+    min-width: 55px;
+    padding: 0.5rem 4rem 0.5rem 2rem;
+}
+
+.logoLink {
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+}
+
+.logoAppName {
+    color: white;
+    font-size: 1.7rem;
+    margin-bottom: -5px;
+}
