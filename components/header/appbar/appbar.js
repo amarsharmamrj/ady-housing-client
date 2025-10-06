@@ -54,7 +54,7 @@ function DrawerAppBar(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
-            <AppBar component="nav">
+            <AppBar component="nav" sx={{position: 'sticky'}}>
                 <Box>
                     <Toolbar className={styles.toolbar}>
                         <IconButton
@@ -107,9 +107,9 @@ function DrawerAppBar(props) {
                     {drawer}
                 </Drawer>
             </nav>
-            <Box component="main" sx={{ p: 3 }}>
+            {/* <Box component="main" sx={{ p: 3 }}>
                 <Toolbar />
-            </Box>
+            </Box> */}
         </Box>
     );
 }

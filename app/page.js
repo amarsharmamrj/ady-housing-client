@@ -1,10 +1,10 @@
 import Header from "@/components/header/header";
-import { Button } from "@mui/material";
+import HeroSection from "@/components/home/hero-section/HeroSection";
 
 export default function Home() {
   return (
     <>
-      {/* <Header /> */}
+      <HeroSection />
     </>    
   );
 }
