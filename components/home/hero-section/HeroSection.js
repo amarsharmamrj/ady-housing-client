@@ -9,7 +9,6 @@ const HeroSection = () => {
             <Typography variant="p" className={styles.sub_title}>Discover the perfect place to live with
                 our comprehensive property listings and expert local agents.
             </Typography>
-
             <Search />
         </Box>
     )

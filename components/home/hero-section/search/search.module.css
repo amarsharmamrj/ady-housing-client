@@ -1,0 +1,122 @@
+.search_wrapper {
+    width: 60dvw;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: rgb(250 250 250 / 25%);
+    backdrop-filter: blur(4px);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: absolute;
+    top: 40%;
+    z-index: 100px;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.buy_rent_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background: white;
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+.buy_rent_inner_wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+
+.toggle_btn {
+    flex: 1;
+    z-index: 2;
+    background: transparent !important;
+    border: none;
+    color: #555;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.toggle_btn.active {
+    color: var(--color-primary);
+}
+
+.toggle_bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 5px;
+    border-radius: 5rem 5rem 0 0;
+    background: var(--color-primary);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1;
+}
+
+.left .toggle_bg {
+    transform: translateX(0%);
+}
+
+.right .toggle_bg {
+    transform: translateX(100%);
+}
+
+
+/* ##################### CITY LOCALITY SERACH SECTION  #####################*/
+.city_locality_search_wrapper {
+    display: flex;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0 0 1rem 1rem;
+    border-top: 1px solid rgb(206, 205, 205);
+}
+
+.search_button {
+    border-radius: 1rem;
+    color: white;
+    background-color: var(--color-primary);
+    padding: 0 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.search_input {
+    flex: 1;
+    border-left: 1px solid rgb(201, 200, 200);
+}
+
+.search_input .MuiInputBase-input {
+    border: 0px solid;
+}
+
+
+/* #################### SEARCH RESULT WRAPPER ########################## */
+.search_result_wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.search_result_wrapper.active {
+    max-height: 500px;
+    width: 60%;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    border-radius: 0 0 1rem 1rem;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+body{
+    height: 1000px;
+}
