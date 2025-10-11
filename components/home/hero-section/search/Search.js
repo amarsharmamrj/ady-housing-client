@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from 'react'
-import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Popover, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, ClickAwayListener, FormControl, InputAdornment, InputLabel, MenuItem, Popover, Select, TextField, Typography } from "@mui/material";
 import styles from "./search.module.css";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,7 +16,7 @@ const Search = () => {
     };
 
     return (
-        <Box className={styles.search_wrapper}>
+        <Box className={`${styles.search_wrapper}`}>
 
             {/* buy, rent button wrapper */}
             <Box
@@ -40,10 +40,10 @@ const Search = () => {
             </Box>
 
             {/* city, locality and search button */}
-            <Box className={styles.city_locality_search_wrapper}>
+            <Box className={`${styles.city_locality_search_wrapper}  ${open ? styles.active : ''}`}>
 
                 {/* city */}
-                <Box sx={{ minWidth: 120 }}>
+                <Box sx={{ minWidth: 150 }}>
                     <FormControl label="" fullWidth>
                         <Select
                             labelId="demo-simple-select-label"
@@ -74,6 +74,7 @@ const Search = () => {
                 </Box>
 
                 {/* locality */}
+                <ClickAwayListener onClickAway={(e) => setOpen(false)}>
                 <TextField
                     className={styles.search_input}
                     id="outlined-basic"
@@ -107,10 +108,12 @@ const Search = () => {
                         },
                     }}
                 />
+                </ClickAwayListener>
 
                 {/* search */}
                 <Button
                     variant='contained'
+                    size='small'
                     className={styles.search_button}
                 >
                     Search
