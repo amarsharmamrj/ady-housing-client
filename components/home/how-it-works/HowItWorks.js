@@ -1,7 +1,7 @@
 import SectionTitle from "@/components/section-title/SectionTitle"
 import styles from "./HowItWorks.module.css"
 import { Box } from "@mui/material"
-import HowItWorksCard from "./HowItWorksCard"
+import HowItWorksCard from "./partials/HowItWorksCard"
 import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 import RealEstateAgentIcon from '@mui/icons-material/RealEstateAgent'
 import KeyIcon from '@mui/icons-material/Key'

@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import React from 'react'
-import DrawerAppBar from './appbar/appbar'
+import DrawerAppBar from './partials/appbar'
 
 export default function Header() {
     return (

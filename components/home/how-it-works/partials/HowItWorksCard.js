@@ -1,5 +1,5 @@
 import  { Typography, Box, Paper }  from "@mui/material"
-import styles from './HowItWorks.module.css'
+import styles from '../HowItWorks.module.css'
 
 const HowItWorksCard = ({title, desc, icon}) => {
     return (

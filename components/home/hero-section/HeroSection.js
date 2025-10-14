@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import styles from './HeroSection.module.css'
-import Search from "./search/Search"
+import Search from "./partials/Search"
 
 const HeroSection = () => {
     return (
