@@ -1,0 +1,36 @@
+.cards {
+    display: flex;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.card {
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.icon_wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2.5em;
+    margin-bottom: 1rem;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #daf7df;
+    border-radius: 100%;
+}
+
+.icon {
+    color: var(--color-primary);
+    height: 35px;
+    width: 35px;
+}
+
+.card h5{
+    margin: 0.7rem 0;
+}

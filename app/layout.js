@@ -1,10 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import Header from "@/components/header/Header"; 
-import Footer from "@/components/footer/footer";
-import { ThemeProvider } from "@mui/material"; 
-import theme from "@/theme";
 import ThemeRegistry from "@/components/ThemeRegistry";
+import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/header";
 
 export const metadata = {
@@ -19,6 +15,7 @@ export default function RootLayout({ children }) {
         <ThemeRegistry>
           <Header />
           <main>{children}</main>
+          <Footer />
         </ThemeRegistry>
       </body>
     </html>

@@ -5,7 +5,7 @@ const SectionTitle = ({ title = '', subTitle = '' }) => {
     return (
         <>
             <Typography className={styles.title} variant="h2">{title}</Typography>
-            <Typography  className={styles.subTitle} variant="h5">{subTitle}</Typography>
+            <Typography  className={styles.subTitle} component="p" variant="body1">{subTitle}</Typography>
         </>
     )
 }
