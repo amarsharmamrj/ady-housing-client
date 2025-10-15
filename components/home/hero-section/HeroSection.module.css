@@ -14,6 +14,7 @@
 .sub_title {
   color: white;
   margin-top: 1rem;
+  text-align: center;
 }
 
 /* ################## SEARCH ################### */
@@ -24,6 +25,7 @@
   overflow: hidden;
   color: white;
   margin-top: 50px;
+  overflow-wrap: anywhere;
   border-right: 3px solid white;
   width: 20ch;
   animation:
@@ -49,5 +51,15 @@
 @keyframes blink {
   50% {
     border-color: transparent;
+  }
+}
+
+
+/* #################### MOBILE BREAKPOINT ####################### */
+
+@media (max-width: 600px){
+  .title {
+    font-size: 1.8rem;
+    margin-top: 4rem;
   }
 }

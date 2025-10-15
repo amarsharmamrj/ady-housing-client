@@ -54,3 +54,11 @@ a {
     color-scheme: dark;
   }
 }
+
+
+/* ####################### MOBILE BREAKPOINTS ######################## */
+@media (max-width:600px) {
+  section {
+    padding: 2rem 1rem;
+  }
+}

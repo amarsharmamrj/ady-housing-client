@@ -70,7 +70,7 @@
 }
 
 
-/* ##################### CITY LOCALITY SERACH SECTION  #####################*/
+/* #### CITY LOCALITY SERACH SECTION  ####*/
 .city_locality_search_wrapper {
     display: flex;
     background-color: white;
@@ -105,7 +105,7 @@
 }
 
 
-/* #################### SEARCH RESULT WRAPPER ########################## */
+/* #### SEARCH RESULT WRAPPER #### */
 .search_result_wrapper {
     max-height: 0;
     overflow: hidden;
@@ -119,4 +119,37 @@
     border-radius: 0 0 1rem 1rem;
     background-color: white;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+
+/* #################### MOBILE BREAKPOINT ####################### */
+
+@media (max-width: 600px) {
+    .search_wrapper {
+        width: 100dvw;
+        padding: 0.5rem;
+        top: 40%;
+    }
+
+    .city_locality_search_wrapper {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        column-gap: 0;
+    }
+
+    .search_button {
+        width: 100%;
+    }
+
+    .search_input {
+        padding-left: 0;
+    }
+
+    .search_button{
+        height: 45px;
+    }
+    
+    .select_city .MuiInputBase-input{
+        padding: 0 !important;
+    }
 }

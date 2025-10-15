@@ -43,7 +43,7 @@ const Search = () => {
             <Box className={`${styles.city_locality_search_wrapper}  ${open ? styles.active : ''}`}>
 
                 {/* city */}
-                <Box sx={{ minWidth: 150 }}>
+                <Box sx={{ minWidth: { xs: 132, md: 150 }}}>
                     <FormControl label="" fullWidth>
                         <Select
                             labelId="demo-simple-select-label"
@@ -63,9 +63,12 @@ const Search = () => {
                                 },
                                 "& .MuiSelect-select": {
                                     outline: "none",
-                                    paddingLeft: '0'
+                                    paddingLeft: '0',
+                                    paddingTop: { xs: '5px', md: '16px' },
+                                    paddingBottom: { xs: '5px', md: '16px' }
                                 },
                             }}
+                            className={styles.select_city}
                         >
                             <MenuItem value={'noida'}>Noida</MenuItem>
                             <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
@@ -75,39 +78,42 @@ const Search = () => {
 
                 {/* locality */}
                 <ClickAwayListener onClickAway={(e) => setOpen(false)}>
-                <TextField
-                    className={styles.search_input}
-                    id="outlined-basic"
-                    variant="outlined"
-                    autoComplete='off'
-                    placeholder='Search for locality, project...'
-                    onClick={(e) => setOpen(!open)}
-                    slotProps={{
-                        input: {
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon sx={{ color: '#acacaf' }} />
-                                </InputAdornment>
-                            )
-                        }
-                    }}
-                    sx={{
-                        "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                                border: "none",
+                    <TextField
+                        className={styles.search_input}
+                        id="outlined-basic"
+                        variant="outlined"
+                        autoComplete='off'
+                        placeholder='Search for locality, project...'
+                        onClick={(e) => setOpen(!open)}
+                        slotProps={{
+                            input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon sx={{ color: '#acacaf' }} />
+                                    </InputAdornment>
+                                )
+                            }
+                        }}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    border: "none",
+                                },
+                                "&:hover fieldset": {
+                                    border: "none",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    border: "none",
+                                },
                             },
-                            "&:hover fieldset": {
-                                border: "none",
+                            "& .MuiOutlinedInput-input": {
+                                outline: "none",
+                                paddingLeft: 0,
+                                paddingTop: { xs: '5px', md: '16px' },
+                                paddingBottom: { xs: '5px', md: '16px' }
                             },
-                            "&.Mui-focused fieldset": {
-                                border: "none",
-                            },
-                        },
-                        "& .MuiOutlinedInput-input": {
-                            outline: "none",
-                        },
-                    }}
-                />
+                        }}
+                    />
                 </ClickAwayListener>
 
                 {/* search */}
@@ -121,7 +127,7 @@ const Search = () => {
             </Box>
 
             {/* search results wrapper */}
-           
+
             <Box className={`${styles.search_result_wrapper} ${open ? styles.active : ''}`}>
                 <ul>
                     <li>result</li>

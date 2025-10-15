@@ -1,6 +1,6 @@
 import SectionTitle from "@/components/section-title/SectionTitle"
 import styles from "./HowItWorks.module.css"
-import { Box } from "@mui/material"
+import { Box, Grid } from "@mui/material"
 import HowItWorksCard from "./partials/HowItWorksCard"
 import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 import RealEstateAgentIcon from '@mui/icons-material/RealEstateAgent'
@@ -30,16 +30,18 @@ const HowItWorks = () => {
             <SectionTitle title="How It Works" subTitle="A simplified and transparent process for you." />
 
             <Box className={styles.cards}>
-                {
-                    cardItems?.map((item, index) => (
-                        <HowItWorksCard
-                            key={`${index}-title`}
-                            title={item?.title}
-                            desc={item?.desc}
-                            icon={item?.icon}
-                        />
-                    ))
-                }
+                <Grid container spacing={2}>
+                    {
+                        cardItems?.map((item, index) => (
+                            <HowItWorksCard
+                                key={`${index}-title`}
+                                title={item?.title}
+                                desc={item?.desc}
+                                icon={item?.icon}
+                            />
+                        ))
+                    }
+                </Grid>
             </Box>
         </section>
     )
