@@ -26,7 +26,7 @@ const cardItems = [
 
 const HowItWorks = () => {
     return (
-        <section>
+        <section className={styles.max_breakPoint}>
             <SectionTitle title="How It Works" subTitle="A simplified and transparent process for you." />
 
             <Box className={styles.cards}>

@@ -1,3 +1,7 @@
+section.max_breakPoint {
+    max-width: var(--breakpoint-max-width);
+}
+
 .cards {
     display: flex;
     column-gap: 2rem;

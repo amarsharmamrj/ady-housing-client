@@ -11,7 +11,7 @@ import Link from 'next/link'
 const Footer = () => {
     return (
         <Box component={'footer'} className={styles.footer}>
-            <Grid container spacing={2}>
+            <Grid className={styles.footer_content} container spacing={2}>
 
                 {/* logo */}
                 <Grid size={{ md: 3 }}>

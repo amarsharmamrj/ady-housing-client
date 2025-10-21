@@ -4,6 +4,11 @@
     background-color: var(--color-footer);
 }
 
+.footer_content {
+    max-width: var(--breakpoint-max-width);
+    margin: 0 auto;
+}
+
 .title {
     font-size: 1rem;
     text-transform: uppercase;
@@ -28,4 +33,10 @@
 .social_icon {
     color: white;
     margin: 0 1rem;
+}
+
+@media (max-width: 600px){
+    .footer {
+        padding: 3rem 1rem 2rem 1rem;
+    }
 }

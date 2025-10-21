@@ -4,6 +4,7 @@ import { Box, Button, ClickAwayListener, FormControl, InputAdornment, InputLabel
 import styles from "./search.module.css";
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import { useRouter } from 'next/navigation'
 
 const Search = () => {
     const [selected, setSelected] = useState("buy");
@@ -11,9 +12,15 @@ const Search = () => {
     const [open, setOpen] = useState(false)
     const id = open ? "simple-popover" : undefined;
 
+    const router = useRouter()
+
     const handleChange = (event) => {
         setCity(event.target.value);
     };
+
+    const handleSearch = () => {
+        router.push('/search')
+    }
 
     return (
         <Box className={`${styles.search_wrapper}`}>
@@ -121,6 +128,7 @@ const Search = () => {
                     variant='contained'
                     size='small'
                     className={styles.search_button}
+                    onClick={handleSearch}
                 >
                     Search
                 </Button>
