@@ -9,8 +9,7 @@
 }
 
 .filters_wrapper :global(.MuiAccordionDetails-root) {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
 }
 
 .filters button {
@@ -22,8 +21,10 @@
     margin: 0
 }
 
-
-
 .filters_wrapper :global(.MuiAccordion-root) {
     margin-top: 0;
+}
+
+.filters_wrapper :global(.MuiChip-filled) {
+    color: white;
 }

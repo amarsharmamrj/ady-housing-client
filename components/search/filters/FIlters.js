@@ -1,39 +1,107 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
+"use client";
+
+import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Slider, Stack, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from './Filters.module.css'
+import { filters } from '@/constants/filters';
+import { useState } from 'react';
 
 export const Filters = () => {
+    const [selectedFilters, setSelectedFilters] = useState([])
+    const [priceValue, setPriceValue] = useState([10, 20])
+
+    const handleValueSelected = (filterKey, selectedKey = '', selectedValue, isPriceRange = false) => {
+        const newKey = filterKey + selectedKey
+        let selectedItem
+        const alreadySelected = selectedFilters?.some((item) => item.key == newKey)
+
+        if (isPriceRange) {
+            selectedItem = { key: newKey, value: `${selectedValue[0]} - ${selectedValue[1]}` }
+            if (!alreadySelected) {
+                selectedItem.value = `${alreadySelected[0]} - ${alreadySelected[1]}`
+                setSelectedFilters([...selectedFilters, selectedItem])
+            }
+        } else {
+            selectedItem = { key: newKey, value: selectedKey }
+            if (!alreadySelected) {
+                setSelectedFilters([...selectedFilters, selectedItem])
+            }
+        }
+
+    }
+
+    const handleDelete = (key) => {
+        const remainingFilters = selectedFilters?.filter((item) => item.key != key)
+        setSelectedFilters(remainingFilters)
+    }
+
+    const handlePriceChange = (e, value) => {
+        setPriceValue(value)
+        handleValueSelected('price_range', '', value, true)
+    }
+
     return (
         <aside className={styles.filters}>
             <h2>Filters</h2>
+            <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1} mt={2}>
+                {
+                    selectedFilters?.map(({ key, value }) => {
+                        return (
+                            <Chip
+                                variant="outlined"
+                                key={key}
+                                label={value}
+                                color='primary'
+                                onDelete={() => handleDelete(key)}
+                            />
+                        )
+                    })
+                }
+            </Stack>
 
             <Box className={styles.filters_wrapper}>
-                <Accordion>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1-content"
-                        id="panel1-header"
-                    >
-                        <Typography component="span">Accordion 1</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1-content"
-                        id="panel1-header"
-                    >
-                        <Typography component="span">Accordion 1</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </AccordionDetails>
-                </Accordion>
+                {
+                    filters?.map(({ filterKey, filterName, values }) => {
+                        return (
+                            <Accordion key={filterKey} defaultExpanded>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1-content"
+                                    id="panel1-header"
+                                >
+                                    <Typography component="span">{filterName}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1}>
+                                        {
+                                            filterKey === 'price_range' ? (
+                                                <Slider
+                                                    getAriaLabel={() => 'Temperature range'}
+                                                    value={priceValue}
+                                                    onChange={handlePriceChange}
+                                                    valueLabelDisplay="auto"
+                                                    getAriaValueText={() => 'value'}
+                                                />
+                                            ) : (
+                                                values?.map((value) => {
+                                                    return (
+                                                        <Chip
+                                                            variant={selectedFilters.some((item) => (item.key == filterKey + value.key)) ? "filled" : "outlined"}
+                                                            key={value?.key}
+                                                            label={value?.value}
+                                                            color='primary'
+                                                            onClick={() => handleValueSelected(filterKey, value?.key, value?.value)}
+                                                        />
+                                                    )
+                                                })
+                                            )
+                                        }
+                                    </Stack>
+                                </AccordionDetails>
+                            </Accordion>
+                        )
+                    })
+                }
             </Box>
         </aside>
     )
