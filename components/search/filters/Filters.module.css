@@ -1,0 +1,29 @@
+.filters {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 1rem;
+    padding: 1rem 0.5rem;
+}
+
+.filters_wrapper>div {
+    box-shadow: none;
+}
+
+.filters_wrapper :global(.MuiAccordionDetails-root) {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.filters button {
+    padding: 0;
+}
+
+
+.filters button span {
+    margin: 0
+}
+
+
+
+.filters_wrapper :global(.MuiAccordion-root) {
+    margin-top: 0;
+}

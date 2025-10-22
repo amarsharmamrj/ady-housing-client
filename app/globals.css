@@ -34,8 +34,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-section {
+section{
   padding: 4rem 3rem 3rem 3rem;
+  margin:  0 auto;
+}
+
+main {
+  padding: 1rem;
   margin:  0 auto;
 }
 
