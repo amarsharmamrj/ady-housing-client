@@ -10,7 +10,7 @@ export const metadata = {
 const Search = () => {
 
     return (
-        <main>
+        <main className="search_container">
             <Grid container>
                 <Grid size={{ xs: 12, md: 3 }}>
                     <Filters />
