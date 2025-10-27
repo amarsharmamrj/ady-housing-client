@@ -5,7 +5,7 @@ export const filters = [
         values: [
             { key: 'house', value: 'House' },
             { key: 'apartment', value: 'Apartment' },
-            { key: 'land', value: 'Apartment' },
+            { key: 'land', value: 'Land' },
             { key: 'farm_house', value: 'Farm House' },
         ]
     },

@@ -16,7 +16,7 @@ export const PropertyList = () => {
 
     return (
         <Box className={styles.container}>
-            <PropertyHeader />
+            <PropertyHeader propertyCount={properties?.length} />
 
             {/* properties */}
             {/* <Box className={styles.properties}> */}

@@ -11,24 +11,29 @@ export const Filters = () => {
     const [priceValue, setPriceValue] = useState([10, 20])
 
     const handleValueSelected = (filterKey, selectedKey = '', selectedValue, isPriceRange = false) => {
-        const newKey = filterKey + selectedKey
-        let selectedItem
-        const alreadySelected = selectedFilters?.some((item) => item.key == newKey)
+        const newKey = filterKey + selectedKey;
+        const alreadySelected = selectedFilters?.some((item) => item.key === newKey);
+        let updatedFilters;
 
-        if (isPriceRange) {
-            selectedItem = { key: newKey, value: `${selectedValue[0]} - ${selectedValue[1]}` }
-            if (!alreadySelected) {
-                selectedItem.value = `${alreadySelected[0]} - ${alreadySelected[1]}`
-                setSelectedFilters([...selectedFilters, selectedItem])
+        if (isPriceRange) {             // for price range
+            const newItem = { filterKey, key: newKey, value: `${selectedValue[0]} - ${selectedValue[1]}` };
+
+            if (alreadySelected) {
+                updatedFilters = selectedFilters.map(item =>
+                    item.key === newKey ? newItem : item
+                );
+            } else {
+                updatedFilters = [...selectedFilters, newItem];
             }
-        } else {
-            selectedItem = { key: newKey, value: selectedKey }
+            setSelectedFilters(updatedFilters);
+        } else {                        // for other values
+            const newItem = { filterKey, key: newKey, value: selectedKey };
             if (!alreadySelected) {
-                setSelectedFilters([...selectedFilters, selectedItem])
+                setSelectedFilters((prev) => [...prev, newItem]);
             }
         }
+    };
 
-    }
 
     const handleDelete = (key) => {
         const remainingFilters = selectedFilters?.filter((item) => item.key != key)
@@ -45,12 +50,16 @@ export const Filters = () => {
             <h2>Filters</h2>
             <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1} mt={2}>
                 {
-                    selectedFilters?.map(({ key, value }) => {
+                    selectedFilters?.map(({ filterKey, key, value }) => {
                         return (
                             <Chip
                                 variant="outlined"
                                 key={key}
-                                label={value}
+                                label={
+                                    filterKey == 'bedrooms' ?
+                                        `${value} BHK` :
+                                        value?.replace('_', ' ')
+                                }
                                 color='primary'
                                 onDelete={() => handleDelete(key)}
                             />
@@ -90,6 +99,7 @@ export const Filters = () => {
                                                             key={value?.key}
                                                             label={value?.value}
                                                             color='primary'
+                                                            className={styles.chip}
                                                             onClick={() => handleValueSelected(filterKey, value?.key, value?.value)}
                                                         />
                                                     )

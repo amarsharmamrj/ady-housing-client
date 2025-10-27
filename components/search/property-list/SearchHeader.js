@@ -5,7 +5,7 @@ import { useState } from "react"
 import styles from './PropertyList.module.css'
 
 
-const PropertyHeader = () => {
+const PropertyHeader = ({propertyCount}) => {
     const [sortBy, setSortBy] = useState('newest')
 
     const handleChange = (e) => {
@@ -15,7 +15,7 @@ const PropertyHeader = () => {
 
     return (
         <Box className={styles.header}>
-            <Typography variant="h6">100 Properties found</Typography>
+            <Typography variant="h6">{propertyCount} Properties found</Typography>
             <Box className={styles.sortBy_wrapper}>
                 <Typography variant="p" sx={{ display: 'inline-block' }}>Sort By:</Typography>
                 <Box >

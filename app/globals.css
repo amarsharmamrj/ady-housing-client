@@ -34,9 +34,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-section{
+section {
   padding: 4rem 3rem 3rem 3rem;
-  margin:  0 auto;
+  margin: 0 auto;
 }
 
 * {
@@ -50,7 +50,7 @@ a {
   text-decoration: none;
 }
 
-.search_container{
+.search_container {
   padding: 2rem;
   margin: 0 auto;
 }
@@ -67,4 +67,11 @@ a {
   section {
     padding: 2rem 1rem;
   }
+
+  .search_container {
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+
 }
