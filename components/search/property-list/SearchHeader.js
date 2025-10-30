@@ -1,21 +1,24 @@
 "use client"
 
-import { Box, FormControl, MenuItem, Select, Typography } from "@mui/material"
+import { Box, FormControl, MenuItem, Select, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useState } from "react"
 import styles from './PropertyList.module.css'
 
 
 const PropertyHeader = ({ propertyCount }) => {
     const [sortBy, setSortBy] = useState('newest')
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const handleChange = (e) => {
         setSortBy(e.target.value)
     }
 
-
     return (
         <Box className={styles.header}>
-            <Typography variant="h6">{propertyCount} Properties found</Typography>
+
+            { !isMobile && <Typography variant="h6">{propertyCount} Properties found</Typography> }
+
             <Box className={styles.sortBy_wrapper}>
                 <Typography variant="p" sx={{ display: 'inline-block' }}>Sort By:</Typography>
                 <Box >

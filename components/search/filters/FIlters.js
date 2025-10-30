@@ -1,28 +1,24 @@
 "use client";
 
-import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Slider, Stack, Typography } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Button, Drawer, useMediaQuery, useTheme } from '@mui/material'
 import styles from './Filters.module.css'
 import { filters } from '@/constants/filters';
 import { useState } from 'react';
-import { formatIndianNumber } from '@/utils/utils';
-
-const marks = [
-    { label: '1L', value: 100000 },
-    { label: '1CR', value: 10000000 },
-    { label: '2Cr', value: 20000000 },
-    { label: '2Cr', value: 20000000 },
-    { label: '3Cr', value: 30000000 },
-    { label: '4Cr', value: 40000000 },
-    { label: '5Cr+', value: 50000000 },
-]
+import { formatIndianNumber, isMobile } from '@/utils/utils';
+import TuneIcon from '@mui/icons-material/Tune';
+import FilterContent from './FilterContent';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const defaultPriceValue = [100000, 20000000]
 
 export const Filters = () => {
     const [selectedFilters, setSelectedFilters] = useState([])
     const [priceValue, setPriceValue] = useState(defaultPriceValue)
-    const [filtersExpanded, setFiltersExpanded] = useState(false)
+    const [open, setOpen] = useState(false)
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    const toggleDrawer = (state) => () => setOpen(state);
 
     const handleValueSelected = (filterKey, selectedKey = '', selectedValue, isPriceRange = false) => {
         const newKey = filterKey + selectedKey;
@@ -47,7 +43,6 @@ export const Filters = () => {
             }
         }
     };
-
 
     const handleDelete = (key) => {
         const remainingFilters = selectedFilters?.filter((item) => item.key != key)
@@ -75,87 +70,70 @@ export const Filters = () => {
     }
 
     return (
-        <aside className={`${styles.filters} ${filtersExpanded ? styles.filters_padding : ''}`}>
-            <Accordion defaultExpanded={filtersExpanded} onChange={() => setFiltersExpanded(!filtersExpanded)}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1-content"
-                    id="panel1-header"
-                    className={styles.filter_accordian}
-                >
-                    <Typography component="span" className={styles.filter_title}>Filters</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1} mt={2}>
-                        {
-                            selectedFilters?.map(({ filterKey, key, value }) => {
-                                return (
-                                    <Chip
-                                        variant="outlined"
-                                        key={key}
-                                        label={formatSelectedDisplayValue(filterKey, value)}
-                                        color='primary'
-                                        onDelete={() => handleDelete(key)}
-                                    />
-                                )
-                            })
-                        }
-                    </Stack>
+        <>
+            {/* Mobile: full-screen Drawer */}
+            {isMobile && (
+                <>
+                    <Button
+                        size='small'
+                        variant="outlined"
+                        startIcon={<TuneIcon />}
+                        onClick={toggleDrawer(true)}
+                    >
+                        Filters
+                    </Button>
 
-                    <Box className={styles.filters_wrapper}>
-                        {
-                            filters?.map(({ filterKey, filterName, values }) => {
-                                return (
-                                    <Accordion key={filterKey} defaultExpanded>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel1-content"
-                                            id="panel1-header"
-                                        >
-                                            <Typography component="span">{filterName}</Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1} sx={{ padding: filterKey === 'price_range' ? '0 0.5rem' : '0' }}>
-                                                {
-                                                    filterKey === 'price_range' ? (
-                                                        <Slider
-                                                            getAriaLabel={() => 'Temperature range'}
-                                                            value={priceValue}
-                                                            onChange={handlePriceChange}
-                                                            valueLabelDisplay="auto"
-                                                            getAriaValueText={() => 'value'}
-                                                            min={100000}
-                                                            max={50000000}
-                                                            step={100000}
-                                                            valueLabelFormat={formatIndianNumber}
-                                                            marks={marks}
-                                                            defaultValue={[100000, 2000000]}
-                                                        />
-                                                    ) : (
-                                                        values?.map((value) => {
-                                                            return (
-                                                                <Chip
-                                                                    variant={selectedFilters.some((item) => (item.key == filterKey + value.key)) ? "filled" : "outlined"}
-                                                                    key={value?.key}
-                                                                    label={value?.value}
-                                                                    color='primary'
-                                                                    className={styles.chip}
-                                                                    onClick={() => handleValueSelected(filterKey, value?.key, value?.value)}
-                                                                />
-                                                            )
-                                                        })
-                                                    )
-                                                }
-                                            </Stack>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                )
-                            })
-                        }
-                    </Box>
-                </AccordionDetails>
-            </Accordion>
-        </aside>
+                    <Drawer
+                        anchor="bottom"
+                        open={open}
+                        onClose={toggleDrawer(false)}
+                        PaperProps={{
+                            sx: {
+                                height: "85%",
+                                borderRadius: "16px 16px 0 0",
+                                padding: '1rem 1rem'
+                            },
+                        }}
+                    >
+                        <Button
+                            variant="contained"
+                            startIcon={<KeyboardBackspaceIcon />}
+                            onClick={toggleDrawer(false)}
+                            sx={{ color: 'white', letterSpacing: '1px' }}
+                        >
+                            View Properties
+                        </Button>
+                        <FilterContent
+                            selectedFilters={selectedFilters}
+                            filters={filters}
+                            priceValue={priceValue}
+                            handlePriceChange={handlePriceChange}
+                            formatSelectedDisplayValue={formatSelectedDisplayValue}
+                            handleDelete={handleDelete}
+                            handleValueSelected={handleValueSelected}
+                        />
+                    </Drawer>
+                </>
+            )}
+
+            {/* for desktop */}
+            {!isMobile && (
+                <Box component="aside" sx={{ display: { xs: "none", md: "block" } }} className={styles.filters}>
+                    <h2>
+                        <TuneIcon />Filters
+                    </h2>
+                    <FilterContent
+                        selectedFilters={selectedFilters}
+                        filters={filters}
+                        priceValue={priceValue}
+                        handlePriceChange={handlePriceChange}
+                        formatSelectedDisplayValue={formatSelectedDisplayValue}
+                        handleDelete={handleDelete}
+                        handleValueSelected={handleValueSelected}
+                    />
+                </Box>
+            )}
+        </>
     )
 }
 

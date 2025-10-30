@@ -1,10 +1,6 @@
 .filters {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
-}
-
-.filters_padding{
     padding: 1rem;
 }
 
@@ -16,16 +12,6 @@
     min-height: 25px;
 }
 
-.filters button {
-    min-height: 25px !important;
-    height: 25px !important;
-}
-
-.filters_wrapper button {
-    min-height: auto !important;
-    height: auto !important;
-}
-
 .filter_title{
     font-size: 1.2rem;
 }
@@ -34,15 +20,15 @@
     box-shadow: none;
 }
 
-.filters :global(.MuiAccordionDetails-root) {
-    padding: 0;
-}
-
 .filters_wrapper :global(.MuiAccordionDetails-root) {
     padding: 0;
 }
 
 .filters button {
+    padding: 0;
+}
+
+.filters_wrapper button {
     padding: 0;
 }
 

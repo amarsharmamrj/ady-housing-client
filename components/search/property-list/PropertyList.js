@@ -4,12 +4,16 @@ import PropertyHeader from "./SearchHeader"
 import PropertyCard from "./PropertyCard"
 
 async function getProperties() {
-    const res = await fetch("http://localhost:4000/api/property", {
-        cache: "no-store"
-    });
+    try {
+        const res = await fetch("http://localhost:4000/api/property", {
+            cache: "no-store"
+        });
 
-    if (!res.ok) throw new Error("Failed to fetch properties");
-    return res.json();
+        if (!res.ok) throw new Error("Failed to fetch properties");
+        return res.json();
+    } catch (error) {
+        console.log('api error:', error)
+    }
 }
 
 export const PropertyList = async () => {

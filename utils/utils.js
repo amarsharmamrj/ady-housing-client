@@ -16,3 +16,12 @@ export const formatIndianNumber = (num) => {
         return num.toLocaleString('en-IN');
     }
 }
+
+export const isMobile = () => {
+    return window?.innerWidth < 600 ? true : false
+}
+
+// import { useMediaQuery, useTheme } from "@mui/material";
+// ...
+// const theme = useTheme();
+// const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

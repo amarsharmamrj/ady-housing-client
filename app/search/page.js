@@ -11,14 +11,7 @@ const Search = () => {
 
     return (
         <main className="search_container">
-            <Grid container>
-                <Grid size={{ xs: 12, md: 3 }}>
-                    <Filters />
-                </Grid>
-                <Grid size={{ xs: 12, md: 9 }}>
-                    <PropertyList />
-                </Grid>
-            </Grid>
+            <Search />
         </main>
     )
 }

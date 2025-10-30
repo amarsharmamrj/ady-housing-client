@@ -15,7 +15,7 @@
 }
 
 .sorting {
-    /* min-width: 180px */
+    min-width: 180px
 }
 
 .card {
@@ -110,10 +110,10 @@
         justify-content: center;
     }
 
-    .header {
+    /* .header {
         flex-wrap: wrap;
         flex-direction: column-reverse;
-    }
+    } */
 
     .sorting {
         /* min-width: max-content; */
