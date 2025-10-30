@@ -5,7 +5,7 @@ import { useState } from "react"
 import styles from './PropertyList.module.css'
 
 
-const PropertyHeader = ({propertyCount}) => {
+const PropertyHeader = ({ propertyCount }) => {
     const [sortBy, setSortBy] = useState('newest')
 
     const handleChange = (e) => {
