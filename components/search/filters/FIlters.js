@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Drawer, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Button, Badge, Drawer, useMediaQuery, useTheme } from '@mui/material'
 import styles from './Filters.module.css'
 import { filters } from '@/constants/filters';
 import { useState } from 'react';
@@ -8,10 +8,11 @@ import { formatIndianNumber, isMobile } from '@/utils/utils';
 import TuneIcon from '@mui/icons-material/Tune';
 import FilterContent from './FilterContent';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import PropertyHeader from '../property-list/SearchHeader';
 
 const defaultPriceValue = [100000, 20000000]
 
-export const Filters = () => {
+export const Filters = ({ propertyCount }) => {
     const [selectedFilters, setSelectedFilters] = useState([])
     const [priceValue, setPriceValue] = useState(defaultPriceValue)
     const [open, setOpen] = useState(false)
@@ -74,14 +75,23 @@ export const Filters = () => {
             {/* Mobile: full-screen Drawer */}
             {isMobile && (
                 <>
-                    <Button
-                        size='small'
-                        variant="outlined"
-                        startIcon={<TuneIcon />}
-                        onClick={toggleDrawer(true)}
-                    >
-                        Filters
-                    </Button>
+                    <Box className={styles.filter_sorting_wrapper}>
+
+                        <Badge badgeContent={selectedFilters?.length} color="primary">
+                            <Button
+                                size='medium'
+                                color="primary"
+                                variant="outlined"
+                                startIcon={<TuneIcon />}
+                                onClick={toggleDrawer(true)}
+                                sx={{ height: '40px' }}
+                            >
+                                Filters
+                            </Button>
+                        </Badge>
+
+                        <PropertyHeader propertyCount={propertyCount} />
+                    </Box>
 
                     <Drawer
                         anchor="bottom"
@@ -105,6 +115,7 @@ export const Filters = () => {
                         </Button>
                         <FilterContent
                             selectedFilters={selectedFilters}
+                            setSelectedFilters={setSelectedFilters}
                             filters={filters}
                             priceValue={priceValue}
                             handlePriceChange={handlePriceChange}
@@ -119,11 +130,12 @@ export const Filters = () => {
             {/* for desktop */}
             {!isMobile && (
                 <Box component="aside" sx={{ display: { xs: "none", md: "block" } }} className={styles.filters}>
-                    <h2>
-                        <TuneIcon />Filters
-                    </h2>
+                    <Box className={styles.filters_title_wrapper}>
+                        <h2>Filters {selectedFilters?.length > 0 && `(${selectedFilters?.length})`}</h2>
+                    </Box>
                     <FilterContent
                         selectedFilters={selectedFilters}
+                        setSelectedFilters={setSelectedFilters}
                         filters={filters}
                         priceValue={priceValue}
                         handlePriceChange={handlePriceChange}

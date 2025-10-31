@@ -1,32 +1,24 @@
-import { Box, Grid } from "@mui/material"
+"use client"
+
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import styles from './PropertyList.module.css'
 import PropertyHeader from "./SearchHeader"
 import PropertyCard from "./PropertyCard"
 
-async function getProperties() {
-    try {
-        const res = await fetch("http://localhost:4000/api/property", {
-            cache: "no-store"
-        });
-
-        if (!res.ok) throw new Error("Failed to fetch properties");
-        return res.json();
-    } catch (error) {
-        console.log('api error:', error)
-    }
-}
-
-export const PropertyList = async () => {
-    const properties = await getProperties();
-    console.log('@@ properties:', properties)
+export const PropertyList = ({ properties }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Box className={styles.container}>
-            <PropertyHeader propertyCount={properties?.data?.length} />
+
+            {!isMobile && <PropertyHeader propertyCount={properties?.length} />}
+
+            {isMobile && <Typography variant="h6" my={1}>{properties?.length || 0} Properties found</Typography>}
 
             <Grid container spacing={4}>
                 {
-                    properties?.data?.map((property) => <PropertyCard key={property._id} property={property} />)
+                    properties?.map((property) => <PropertyCard key={property._id} property={property} />)
                 }
             </Grid>
         </Box>

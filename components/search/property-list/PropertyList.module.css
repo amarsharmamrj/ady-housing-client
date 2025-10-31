@@ -9,13 +9,18 @@
 }
 
 .sortBy_wrapper {
+    border: 1px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 0 0 0 0.4rem;
+    height: 40px;
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
 }
 
 .sorting {
-    min-width: 180px
+    min-width: 180px;
+    color: var(--color-primary);
 }
 
 .card {
@@ -98,6 +103,14 @@
     color: #0000006c;
 }
 
+.sorting_icon{
+    transition: all 0.4s ease-in-out;
+}
+
+.rotate_icon {
+    transform: rotateY(180deg);
+}
+
 /* ####################### MOBILE BREAKPOINTS ######################## */
 @media (max-width:600px) {
 
@@ -110,10 +123,9 @@
         justify-content: center;
     }
 
-    /* .header {
-        flex-wrap: wrap;
-        flex-direction: column-reverse;
-    } */
+    .header {
+        margin: 0;
+    }
 
     .sorting {
         /* min-width: max-content; */
