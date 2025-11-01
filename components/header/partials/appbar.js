@@ -54,7 +54,7 @@ function DrawerAppBar(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
-            <AppBar component="nav" sx={{position: 'sticky'}}>
+            <AppBar component="nav" sx={{ position: 'sticky' }}>
                 <Box>
                     <Toolbar className={styles.toolbar}>
                         <IconButton
@@ -83,6 +83,11 @@ function DrawerAppBar(props) {
                         </Box>
 
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+
+                            <Link href="/post-property">
+                                <Button variant='contained' color="tertiary">Post Property</Button>
+                            </Link>
+
                             {navItems.map((item) => (
                                 <Link key={item} href="/about">{item}</Link>
                             ))}

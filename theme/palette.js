@@ -6,6 +6,9 @@ const palette = {
   secondary: {
     main: "#ff4081",
   },
+   tertiary: {
+    main: "#276bfdff",
+  },
   default: {
     main: "rgb(33, 33, 33)",
   },

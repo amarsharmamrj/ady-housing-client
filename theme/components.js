@@ -15,6 +15,13 @@ const components = {
       },
     },
   },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        borderRadius: "0.5rem",
+      },
+    },
+  }
 };
 
 export default components;

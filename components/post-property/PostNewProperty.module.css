@@ -1,0 +1,86 @@
+.post_property {
+    padding: 2rem;
+    width: 100%;
+}
+
+.post_property :global(.MuiStepLabel-iconContainer.Mui-active) {
+    outline: 6px solid #95F7E0;
+    border-radius: 50%;
+    animation: pulseOutline 2s infinite ease-out,
+}
+
+@keyframes pulseOutline {
+    from {
+        outline-width: 0px;
+        outline-color: #078f6f;
+    }
+
+    to {
+        outline-width: 10px;
+        outline-color: #c6faee;
+
+    }
+}
+
+.step_item_title {
+    font-size: 1.5rem
+}
+
+.form_steps_wrapper {
+    padding: 1rem 0;
+}
+
+.form_row_wrapper{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.form_item_wrapper {
+    margin: 1rem 0 0.5rem 0;
+}
+
+.radio_group {
+    display: flex;
+    row-gap: 1rem;
+    column-gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post_property label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black !important;
+    margin-bottom: 0.5em;
+}
+
+.post_property input {
+    border-radius: 0.5rem;
+}
+
+.radio_label {
+    flex: 1;
+    margin: 0;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.radio_label.selected {
+    border: 2px solid var(--color-primary);
+    background-color: rgb(31 171 137 / 0.1);
+}
+
+
+/* ####################### MOBILE BREAKPOINTS ######################## */
+@media (max-width:600px) {
+    .post_property {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .step_item_title {
+        font-size: 1.2rem
+    }
+}

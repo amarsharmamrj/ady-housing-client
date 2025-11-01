@@ -55,6 +55,11 @@ a {
   margin: 0 auto;
 }
 
+.post_property_container {
+  padding: 2rem 12rem;
+  margin: 0 auto;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -73,5 +78,9 @@ a {
     margin: 0 auto;
   }
 
+  .post_property_container {
+    padding: 2rem 1rem;
+    margin: 0 auto;
+  }
 
 }
