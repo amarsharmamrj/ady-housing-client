@@ -84,7 +84,7 @@ function DrawerAppBar(props) {
 
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 
-                            <Link href="/post-property">
+                            <Link href="/post-property?step=1">
                                 <Button variant='contained' color="tertiary">Post Property</Button>
                             </Link>
 

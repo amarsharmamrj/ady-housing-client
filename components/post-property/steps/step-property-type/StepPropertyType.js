@@ -1,11 +1,16 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
 import styles from '../../PostNewProperty.module.css'
 
-const StepPropertyType = ({
-    propertyType, setPropertyType,
-    propertyCategory, setPropertyCategory,
-    propertySubCategory, setPropertySubCategory
-}) => {
+const StepPropertyType = ({ getState, setState }) => {
+
+    const handleOnChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setState((prev) => {
+            return { ...prev, [name]: value }
+        })
+    }
+
     return (
         <>
             {/* you want to */}
@@ -13,18 +18,18 @@ const StepPropertyType = ({
                 <FormLabel className={styles.radio_group_label} id="property-type-radio-buttons-group-label">You want to:</FormLabel>
                 <RadioGroup
                     aria-labelledby="select proper type"
-                    name="property-type"
-                    value={propertyType}
-                    onChange={(event) => setPropertyType(event.target.value)}
+                    name="propertyType"
+                    value={getState?.propertyType}
+                    onChange={handleOnChange}
                     className={styles.radio_group}
                 >
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertyType === "sell" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertyType === "sell" ? styles.selected : ""}`}
                         value="sell"
                         control={<Radio />}
                         label="Sell" />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertyType === "buy" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertyType === "buy" ? styles.selected : ""}`}
                         value="buy"
                         control={<Radio />}
                         label="Buy"
@@ -37,18 +42,18 @@ const StepPropertyType = ({
                 <FormLabel className={styles.radio_group_label} id="property-category-radio-buttons-group-label">Property Category:</FormLabel>
                 <RadioGroup
                     aria-labelledby="select property category"
-                    name="property-category"
-                    value={propertyCategory}
-                    onChange={(event) => setPropertyCategory(event.target.value)}
+                    name="propertyCategory"
+                    value={getState?.propertyCategory}
+                    onChange={handleOnChange}
                     className={styles.radio_group}
                 >
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertyCategory === "residential" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertyCategory === "residential" ? styles.selected : ""}`}
                         value="residential"
                         control={<Radio />}
                         label="Residential" />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertyCategory === "commercial" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertyCategory === "commercial" ? styles.selected : ""}`}
                         value="commercial"
                         control={<Radio />}
                         label="Commercial"
@@ -61,24 +66,24 @@ const StepPropertyType = ({
                 <FormLabel className={styles.radio_group_label} id="property-sub-category-radio-buttons-group-label">Property Sub-Category:</FormLabel>
                 <RadioGroup
                     aria-labelledby="select property sub-category"
-                    name="property-sub-category"
-                    value={propertySubCategory}
-                    onChange={(event) => setPropertySubCategory(event.target.value)}
+                    name="propertySubCategory"
+                    value={getState?.propertySubCategory}
+                    onChange={handleOnChange}
                     className={styles.radio_group}
                 >
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertySubCategory === "flat" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertySubCategory === "flat" ? styles.selected : ""}`}
                         value="flat"
                         control={<Radio />}
                         label="Flat / Apartment" />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertySubCategory === "house" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertySubCategory === "house" ? styles.selected : ""}`}
                         value="house"
                         control={<Radio />}
                         label="House / Villa"
                     />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${propertySubCategory === "plot" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.propertySubCategory === "plot" ? styles.selected : ""}`}
                         value="plot"
                         control={<Radio />}
                         label="Plot / Land"

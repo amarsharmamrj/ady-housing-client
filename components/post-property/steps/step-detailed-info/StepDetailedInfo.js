@@ -35,10 +35,11 @@ const StepDetailedInfo = ({ amenities, setAmenities, nearBy, setNearBy }) => {
                         {
                             amenitiesList?.map((amenity) => (
                                 <FormControlLabel
+                                    key={amenity.value}
                                     className={`${styles.checkbox_label} ${amenities?.includes(amenity?.value) ? styles.selected : ""}`}
                                     value={amenity?.value }
                                     label={amenity?.label}
-                                    control={<Checkbox onChange={(e) => handleAmenitiesChange(e)} />}
+                                    control={<Checkbox checked={amenities?.includes(amenity?.value)} onChange={(e) => handleAmenitiesChange(e)} />}
                                 />
                             ))
                         }

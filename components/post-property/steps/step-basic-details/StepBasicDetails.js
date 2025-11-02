@@ -2,7 +2,16 @@ import { FormControl, FormLabel, TextField, Typography, Box, Select, MenuItem } 
 import styles from '../../PostNewProperty.module.css'
 import { areaUnits } from '@/constants/area-units'
 
-const StepBasicDetails = () => {
+const StepBasicDetails = ({ getState, setState }) => {
+
+    const handleOnChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setState((prev) => {
+            return { ...prev, [name]: value }
+        })
+    }
+
     return (
         <>
             <Box className={styles.form_row_wrapper}>
@@ -11,6 +20,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Contact Person Name</FormLabel>
                     <TextField
                         type="text"
+                        name="contactName"
+                        value={getState?.contactName}
+                        onChange={handleOnChange}
                         placeholder="Enter contact person name"
                         slotProps={{
                             htmlInput: {
@@ -28,6 +40,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Contact Number</FormLabel>
                     <TextField
                         type="tel"
+                        name="contactNumber"
+                        value={getState?.contactNumber}
+                        onChange={handleOnChange}
                         placeholder="Enter your contact number"
                         slotProps={{
                             htmlInput: {
@@ -43,6 +58,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Email</FormLabel>
                     <TextField
                         type="email"
+                        name="email"
+                        value={getState?.email}
+                        onChange={handleOnChange}
                         placeholder="Enter your email number"
                         slotProps={{
                             htmlInput: {
@@ -60,6 +78,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Full Address</FormLabel>
                     <TextField
                         type="text"
+                        name="address"
+                        value={getState?.address}
+                        onChange={handleOnChange}
                         placeholder="Enter your full address"
                         slotProps={{
                             htmlInput: {
@@ -77,6 +98,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Locality</FormLabel>
                     <TextField
                         type="text"
+                        name="locality"
+                        value={getState?.locality}
+                        onChange={handleOnChange}
                         placeholder="Enter your full address"
                         slotProps={{
                             htmlInput: {
@@ -93,6 +117,9 @@ const StepBasicDetails = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="locality-select"
+                        value={getState?.city}
+                        name="city"
+                        onChange={handleOnChange}
                         size="small"
                         placeholder="Select city"
                     // value={city}
@@ -110,6 +137,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Built-up Area</FormLabel>
                     <TextField
                         type="number"
+                        name="builtUpArea"
+                        value={getState?.builtUpArea}
+                        onChange={handleOnChange}
                         placeholder="e.g., 1200"
                         slotProps={{
                             htmlInput: {
@@ -125,6 +155,9 @@ const StepBasicDetails = () => {
                     <FormLabel>Carpet Area</FormLabel>
                     <TextField
                         type="number"
+                        name="carpetArea"
+                        value={getState?.carpetArea}
+                        onChange={handleOnChange}
                         placeholder="e.g., 1000"
                         slotProps={{
                             htmlInput: {
@@ -142,10 +175,14 @@ const StepBasicDetails = () => {
                         labelId="unit-label"
                         id="unit-select"
                         size="small"
+                        name="unit"
+                        value={getState?.unit || ""}
+                        onChange={handleOnChange}
                         placeholder="Select unit"
-                    // value={city}
-                    // onChange={handleChange}
                     >
+                        <MenuItem disabled value="">
+                            <em>Select unit</em>
+                        </MenuItem>
                         {areaUnits?.map((unit) => <MenuItem value={unit.value}>{unit.label}</MenuItem>)}
                     </Select>
                 </FormControl>
