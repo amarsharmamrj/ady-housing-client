@@ -1,9 +1,27 @@
 import { FormControl, FormLabel, TextField, Typography, Box, Select, MenuItem } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
+import { areaUnits } from '@/constants/area-units'
 
 const StepBasicDetails = () => {
     return (
         <>
+            <Box className={styles.form_row_wrapper}>
+                {/* contact person name */}
+                <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormLabel>Contact Person Name</FormLabel>
+                    <TextField
+                        type="text"
+                        placeholder="Enter contact person name"
+                        slotProps={{
+                            htmlInput: {
+                                maxLength: 50
+                            }
+                        }}
+                        size="small"
+                    />
+                </FormControl>
+            </Box>
+
             <Box className={styles.form_row_wrapper}>
                 {/* contact number */}
                 <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
@@ -73,16 +91,63 @@ const StepBasicDetails = () => {
                 <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
                     <FormLabel>City</FormLabel>
                     <Select
-                            labelId="demo-simple-select-label"
-                            id="locality-select"
-                            size="small"
-                            placeholder="Select city"
-                            // value={city}
-                            // onChange={handleChange}
-                        >
-                            <MenuItem value={'noida'}>Noida</MenuItem>
-                            <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
-                        </Select>
+                        labelId="demo-simple-select-label"
+                        id="locality-select"
+                        size="small"
+                        placeholder="Select city"
+                    // value={city}
+                    // onChange={handleChange}
+                    >
+                        <MenuItem value={'noida'}>Noida</MenuItem>
+                        <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
+                    </Select>
+                </FormControl>
+            </Box>
+
+            <Box className={styles.form_row_wrapper}>
+                {/* built-up area */}
+                <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormLabel>Built-up Area</FormLabel>
+                    <TextField
+                        type="number"
+                        placeholder="e.g., 1200"
+                        slotProps={{
+                            htmlInput: {
+                                maxLength: 15
+                            }
+                        }}
+                        size="small"
+                    />
+                </FormControl>
+
+                {/* carpet area */}
+                <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormLabel>Carpet Area</FormLabel>
+                    <TextField
+                        type="number"
+                        placeholder="e.g., 1000"
+                        slotProps={{
+                            htmlInput: {
+                                maxLength: 15
+                            }
+                        }}
+                        size="small"
+                    />
+                </FormControl>
+
+                {/* Unit */}
+                <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormLabel>Unit</FormLabel>
+                    <Select
+                        labelId="unit-label"
+                        id="unit-select"
+                        size="small"
+                        placeholder="Select unit"
+                    // value={city}
+                    // onChange={handleChange}
+                    >
+                        {areaUnits?.map((unit) => <MenuItem value={unit.value}>{unit.label}</MenuItem>)}
+                    </Select>
                 </FormControl>
             </Box>
         </>

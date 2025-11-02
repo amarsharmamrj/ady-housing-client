@@ -47,6 +47,10 @@ const PostNewProperty = () => {
     const [propertyCategory, setPropertyCategory] = React.useState('');
     const [propertySubCategory, setPropertySubCategory] = React.useState('');
 
+    // step - detailed info
+    const [amenities, setAmenities] = React.useState([]);
+    const [nearBy, setNearBy] = React.useState([]);
+
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -118,7 +122,12 @@ const PostNewProperty = () => {
 
                         {/* step - detailed Info */}
                         {
-                            activeStep === 2 && <StepDetailedInfo />
+                            activeStep === 2 && <StepDetailedInfo
+                                amenities={amenities}
+                                setAmenities={setAmenities}
+                                nearBy={nearBy}
+                                setNearBy={setNearBy}
+                            />
                         }
 
                         {/* step - basic details */}
