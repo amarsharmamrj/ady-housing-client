@@ -92,7 +92,7 @@
 /* ####################### MOBILE BREAKPOINTS ######################## */
 @media (max-width:600px) {
     .post_property {
-        padding: 1rem;
+        padding: 2rem 1rem;
         width: 100%;
     }
 

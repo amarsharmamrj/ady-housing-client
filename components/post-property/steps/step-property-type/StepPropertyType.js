@@ -27,12 +27,13 @@ const StepPropertyType = ({ getState, setState }) => {
                         className={`${styles.radio_label} ${getState?.propertyType === "sell" ? styles.selected : ""}`}
                         value="sell"
                         control={<Radio />}
-                        label="Sell" />
+                        label="Sell"
+                    />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertyType === "buy" ? styles.selected : ""}`}
-                        value="buy"
+                        className={`${styles.radio_label} ${getState?.propertyType === "rent" ? styles.selected : ""}`}
+                        value="rent"
                         control={<Radio />}
-                        label="Buy"
+                        label="Rent"
                     />
                 </RadioGroup>
             </FormControl>

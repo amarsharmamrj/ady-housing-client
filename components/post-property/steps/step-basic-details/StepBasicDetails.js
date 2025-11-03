@@ -43,7 +43,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                         name="contactNumber"
                         value={getState?.contactNumber}
                         onChange={handleOnChange}
-                        placeholder="Enter your contact number"
+                        placeholder="Enter contact number"
                         slotProps={{
                             htmlInput: {
                                 maxLength: 10
@@ -61,7 +61,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                         name="email"
                         value={getState?.email}
                         onChange={handleOnChange}
-                        placeholder="Enter your email number"
+                        placeholder="Enter email"
                         slotProps={{
                             htmlInput: {
                                 maxLength: 50
@@ -101,7 +101,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                         name="locality"
                         value={getState?.locality}
                         onChange={handleOnChange}
-                        placeholder="Enter your full address"
+                        placeholder="Enter locality"
                         slotProps={{
                             htmlInput: {
                                 maxLength: 100
