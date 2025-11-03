@@ -2,22 +2,31 @@ import { FormControl, Checkbox, Autocomplete, Chip, FormLabel, TextField, Typogr
 import styles from '../../PostNewProperty.module.css'
 import { amenitiesList } from '@/constants/amenities'
 
-const StepDetailedInfo = ({ amenities, setAmenities, nearBy, setNearBy }) => {
+const StepDetailedInfo = ({ getState, setState }) => {
 
     const handleAmenitiesChange = (e) => {
         const isChecked = e.target.checked
         const value = e.target.value
         if (isChecked) {
-            setAmenities((prev) => [...prev, value])
+            const prevAmenities = getState?.amenities
+            const newAmenities = [...prevAmenities, value]
+            setState((prev) => {
+                return { ...prev, amenities: newAmenities }
+            })
+
         } else {
-            const newAmenities = amenities?.filter((amenity) => amenity != value)
-            setAmenities(newAmenities)
+            const newAmenities = getState?.amenities?.filter((amenity) => amenity != value)
+            setState((prev) => {
+                return { ...prev, amenities: newAmenities }
+            })
         }
     }
 
     const handleNearbyChange = (event, newValue) => {
         if (newValue.length <= 5) {
-            setNearBy(newValue);
+            setState((prev) => {
+                return { ...prev, nearBy: newValue }
+            })
         }
     };
 
@@ -36,10 +45,10 @@ const StepDetailedInfo = ({ amenities, setAmenities, nearBy, setNearBy }) => {
                             amenitiesList?.map((amenity) => (
                                 <FormControlLabel
                                     key={amenity.value}
-                                    className={`${styles.checkbox_label} ${amenities?.includes(amenity?.value) ? styles.selected : ""}`}
-                                    value={amenity?.value }
+                                    className={`${styles.checkbox_label} ${getState?.amenities?.includes(amenity?.value) ? styles.selected : ""}`}
+                                    value={amenity?.value}
                                     label={amenity?.label}
-                                    control={<Checkbox checked={amenities?.includes(amenity?.value)} onChange={(e) => handleAmenitiesChange(e)} />}
+                                    control={<Checkbox checked={getState?.amenities?.includes(amenity?.value)} onChange={(e) => handleAmenitiesChange(e)} />}
                                 />
                             ))
                         }
@@ -55,13 +64,13 @@ const StepDetailedInfo = ({ amenities, setAmenities, nearBy, setNearBy }) => {
                         multiple
                         freeSolo
                         id="nearby-areas"
-                        value={nearBy}
+                        value={getState?.nearBy}
                         onChange={handleNearbyChange}
                         options={[]}
                         renderValue={(value, getTagProps) =>
                             value.map((option, index) => (
                                 <Chip
-                                    key={value}
+                                    key={option}
                                     variant="outlined"
                                     color='primary'
                                     label={option}
@@ -74,7 +83,7 @@ const StepDetailedInfo = ({ amenities, setAmenities, nearBy, setNearBy }) => {
                             <TextField
                                 {...params}
                                 placeholder={
-                                    nearBy.length >= 5
+                                    getState?.nearBy.length >= 5
                                         ? "Maximum 5 entries allowed"
                                         : "Type and press Enter"
                                 }

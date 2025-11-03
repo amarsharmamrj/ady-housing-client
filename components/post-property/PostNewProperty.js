@@ -47,22 +47,24 @@ const PostNewProperty = () => {
 
     const [activeStep, setActiveStep] = React.useState(0);
 
-    // step 1 - states
-    const [propertyType, setPropertyType] = React.useState('');
-    const [propertyCategory, setPropertyCategory] = React.useState('');
-    const [propertySubCategory, setPropertySubCategory] = React.useState('');
+    const [formStates, setFormStates] = React.useState({
+        propertyType: '',
+        propertyCategory: '',
+        propertySubCategory: '',
 
-    // step 2 - states
-    const [contactName, setContactName] = React.useState('');
-    const [contactNumber, setContactNumber] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [address, setAddress] = React.useState('');
-    const [locality, setLocality] = React.useState('');
-    const [city, setCity] = React.useState('');
-    const [builtUpArea, setBuiltUpArea] = React.useState('');
-    const [carpetArea, setCarpetArea] = React.useState('');
-    const [unit, setUnit] = React.useState('');
+        contactName: '',
+        contactNumber: '',
+        email: '',
+        address: '',
+        locality: '',
+        city: '',
+        builtUpArea: '',
+        carpetArea: '',
+        unit: '',
 
+        amenities: [],
+        nearBy: []
+    })
 
     const [stepOne, setStepOne] = React.useState({
         propertyType: '',
@@ -90,7 +92,7 @@ const PostNewProperty = () => {
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         router.push(`/post-property?step=${activeStep + 2}`);
-        console.log('@@ formStates:', stepOne, stepTwo)
+        console.log('@@ formStates:', formStates)
     };
 
     const handleBack = () => {
@@ -142,22 +144,17 @@ const PostNewProperty = () => {
                     <Box className={styles.form_steps_wrapper}>
                         {/* step - property type */}
                         {
-                            activeStep === 0 && <StepPropertyType getState={stepOne} setState={setStepOne} />
+                            activeStep === 0 && <StepPropertyType getState={formStates} setState={setFormStates} />
                         }
 
                         {/* step - basic details */}
                         {
-                            activeStep === 1 && <StepBasicDetails getState={stepTwo} setState={setStepTwo} />
+                            activeStep === 1 && <StepBasicDetails getState={formStates} setState={setFormStates} />
                         }
 
                         {/* step - detailed Info */}
                         {
-                            activeStep === 2 && <StepDetailedInfo
-                                amenities={amenities}
-                                setAmenities={setAmenities}
-                                nearBy={nearBy}
-                                setNearBy={setNearBy}
-                            />
+                            activeStep === 2 && <StepDetailedInfo getState={formStates} setState={setFormStates} />
                         }
 
                         {/* step - basic details */}
