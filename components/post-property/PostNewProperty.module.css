@@ -105,7 +105,13 @@
     }
 
     .checkbox_label {
-        padding: 0.2rem 0.5rem;
+        padding: 0.2rem 0.2rem;
+        width: 150px;
+        max-width: 160px;
     }
+
+    /* .checkbox_label  span:nth-child(1){
+        padding: 0.2rem;
+    } */
 
 }

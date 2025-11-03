@@ -63,7 +63,9 @@ const PostNewProperty = () => {
         unit: '',
 
         amenities: [],
-        nearBy: []
+        nearBy: [],
+
+        price: ''
     })
 
     const [stepOne, setStepOne] = React.useState({

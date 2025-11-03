@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, TextField, Typography, Box, Select, MenuItem } from '@mui/material'
+import { FormControl, FormLabel, TextField, Box, Select, MenuItem } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
 import { areaUnits } from '@/constants/area-units'
 
