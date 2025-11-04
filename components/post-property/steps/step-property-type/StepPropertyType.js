@@ -18,19 +18,19 @@ const StepPropertyType = ({ getState, setState }) => {
                 <FormLabel className={styles.radio_group_label} id="property-type-radio-buttons-group-label">You want to:</FormLabel>
                 <RadioGroup
                     aria-labelledby="select proper type"
-                    name="propertyType"
-                    value={getState?.propertyType}
+                    name="lookingTo"
+                    value={getState?.lookingTo}
                     onChange={handleOnChange}
                     className={styles.radio_group}
                 >
                     <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertyType === "sell" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.lookingTo === "sell" ? styles.selected : ""}`}
                         value="sell"
                         control={<Radio />}
                         label="Sell"
                     />
                     <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertyType === "rent" ? styles.selected : ""}`}
+                        className={`${styles.radio_label} ${getState?.lookingTo === "rent" ? styles.selected : ""}`}
                         value="rent"
                         control={<Radio />}
                         label="Rent"

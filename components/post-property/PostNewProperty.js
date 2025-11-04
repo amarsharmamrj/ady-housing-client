@@ -48,12 +48,12 @@ const PostNewProperty = () => {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const [formStates, setFormStates] = React.useState({
-        propertyType: '',
+        lookingTo: '',
         propertyCategory: '',
         propertySubCategory: '',
 
-        contactName: '',
-        contactNumber: '',
+        name: '',
+        contact: '',
         email: '',
         address: '',
         locality: '',
@@ -67,24 +67,6 @@ const PostNewProperty = () => {
 
         price: ''
     })
-
-    const [stepOne, setStepOne] = React.useState({
-        propertyType: '',
-        propertyCategory: '',
-        propertySubCategory: '',
-    });
-
-    const [stepTwo, setStepTwo] = React.useState({
-        contactName: '',
-        contactNumber: '',
-        email: '',
-        address: '',
-        locality: '',
-        city: '',
-        builtUpArea: '',
-        carpetArea: '',
-        unit: '',
-    });
 
 
     // step - detailed info
@@ -183,6 +165,7 @@ const PostNewProperty = () => {
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
                             color="primary"
+                            size="medium"
                             variant='contained'
                             endIcon={<ArrowForwardIcon />}
                             onClick={handleNext}

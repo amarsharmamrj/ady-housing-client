@@ -1,3 +1,5 @@
+import { formFields } from "@/constants/post-property-form";
+
 export const formatCurrency = (amount = 0) => {
     return new Intl.NumberFormat('en-IN', {
         style: 'currency',
@@ -21,7 +23,6 @@ export const isMobile = () => {
     return window?.innerWidth < 600 ? true : false
 }
 
-// import { useMediaQuery, useTheme } from "@mui/material";
-// ...
-// const theme = useTheme();
-// const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+export const shouldVisible = (getState, field) =>{
+    return  Object.hasOwn(formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory], field)
+}
