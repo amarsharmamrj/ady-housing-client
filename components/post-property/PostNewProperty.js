@@ -62,7 +62,9 @@ const PostNewProperty = () => {
         carpetArea: '',
         unit: '',
 
-        amenities: [],
+        furnishType: '',
+        furnishings: [],
+        societyAmenities: [],
         nearBy: [],
 
         price: ''
