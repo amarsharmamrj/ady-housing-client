@@ -6,7 +6,7 @@ export const formFields = {
                     propertyType: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
                     name: '',
                     contact: '',
-                    email:'',
+                    email: '',
                     city: '',
                     address: '',
                     locality: '',
@@ -16,6 +16,7 @@ export const formFields = {
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
                     furnishings: ['Dining Table', 'Washing Machine', 'Cupboard', 'Sofa', 'Microwave', 'Stove', 'Fridge', 'Water Purifier', 'Gas Pipeline', 'Chimney', 'Modular Kitchen', 'Fan', 'Light', 'AC', 'Wardrobe', 'TV', 'Bed', 'Gyser'],   // only when furnishType is furnished, semi-furnished
                     societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV', 'Club House', 'Community Hall', 'Water Supply'],
+                    nearbyList: [],
                     price: '',   // rent monthly
                     availableFrom: '',
                     securityDeposit: ['None', '1 month', '2 month', 'custom']   // if custom => input for it 
@@ -24,13 +25,14 @@ export const formFields = {
                     propertyType: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
                     name: '',
                     contact: '',
-                    email:'',
+                    email: '',
                     city: '',
                     address: '',
                     locality: '',
+                    nearbyList: [],
                     possessionStatus: ['Ready to move', 'Under construction'],
                     availableFrom: '',
-                    zoneType: ['Industrial', 'Commercial', 'Residential', 'Special economic zone', 'Open Spaces', 'Agricultural zone', 'Others'],
+                    zoneType: ['Industrial', 'Commercial', 'Residential', 'SEZ', 'Open Spaces', 'Agricultural zone', 'Others'],
                     propertyCondition: ['Ready to use', 'Bare shell'],  // if ready to use => carpet area
                     builtUpArea: '',
                     carpetArea: '',
@@ -48,7 +50,7 @@ export const formFields = {
                     propertyType: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
                     name: '',
                     contact: '',
-                    email:'',
+                    email: '',
                     city: '',
                     address: '',
                     locality: '',
@@ -58,6 +60,7 @@ export const formFields = {
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
                     furnishings: ['Dining Table', 'Washing Machine', 'Cupboard', 'Sofa', 'Microwave', 'Stove', 'Fridge', 'Water Purifier', 'Gas Pipeline', 'Chimney', 'Modular Kitchen', 'Fan', 'Light', 'AC', 'Wardrobe', 'TV', 'Bed', 'Gyser'],   // only when furnishType is furnished, semi-furnished
                     societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV', 'Club House', 'Community Hall', 'Water Supply'],
+                    nearbyList: [],
                     price: '',   // price
                     availableFrom: '',
                 },
@@ -65,13 +68,13 @@ export const formFields = {
                     propertyType: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
                     name: '',
                     contact: '',
-                    email:'',
+                    email: '',
                     city: '',
                     address: '',
                     locality: '',
+                    nearbyList: [],
                     possessionStatus: ['Ready to move', 'Under construction'],
-                    availableFrom: '',
-                    zoneType: ['Industrial', 'Commercial', 'Residential', 'Special economic zone', 'Open Spaces', 'Agricultural zone', 'Others'],
+                    zoneType: ['Industrial', 'Commercial', 'Residential', 'SEZ', 'Open Spaces', 'Agricultural zone', 'Others'],
                     propertyCondition: ['Ready to use', 'Bare shell'],  // if ready to use => carpet area
                     builtUpArea: '',
                     carpetArea: '',

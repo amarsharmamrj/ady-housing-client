@@ -19,9 +19,24 @@ const components = {
     styleOverrides: {
       root: {
         borderRadius: "0.5rem",
+        // height: '56px',
+        // "@media (max-width:600px)": {
+        //   height: '40px'
+        // },
       },
     },
-  }
+  },
+  MuiPickersOutlinedInput: {
+    styleOverrides: {
+      root: {
+        borderRadius: "0.5rem",
+        // height: '56px',
+        // "@media (max-width:600px)": {
+        //   height: '40px'
+        // },
+      },
+    },
+  },
 };
 
 export default components;

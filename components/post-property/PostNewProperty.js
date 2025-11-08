@@ -66,8 +66,16 @@ const PostNewProperty = () => {
         furnishings: [],
         societyAmenities: [],
         nearBy: [],
+        
+        possessionStatus: '',
+        zoneType: '',
+        propertyCondition: '',
+        ownership: '',
+        totalFloors: '0',
+        floors: '',
 
-        price: ''
+        price: '',
+        availableFrom: ''
     })
 
 
