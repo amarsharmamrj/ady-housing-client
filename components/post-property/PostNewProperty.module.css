@@ -49,7 +49,6 @@
 .selected_furnishings {
     display: flex;
     gap: 0.5rem;
-    margin: 0.5rem 0 0 0;
 }
 
 .form_item_wrapper {
@@ -70,10 +69,34 @@
     margin-bottom: 0.5em;
 }
 
-.post_property label.row {
+.post_property .radio_group_label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black !important;
+    margin-bottom: 0.5em;
+}
+
+.post_property .radio_group_label.row {
     display: flex;
-    column-gap: 1rem;
+    column-gap: 3rem;
     justify-content: flex-start;
+}
+
+.post_property .radio_group_label.row button{
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    text-decoration: none;
+}
+
+.post_property .radio_group_label.row button:hover{
+    text-decoration: underline;
+}
+
+.post_property .radio_group_label.row button svg{
+   height: 1.2rem;
+   width: 1.2rem;
 }
 
 .post_property input {
@@ -93,6 +116,10 @@
     gap: 1rem;
     flex-direction: row;
     justify-content: flex-start;
+}
+
+.checkbox_group.furnishings {
+    justify-content: space-between;
 }
 
 .checkbox_label {

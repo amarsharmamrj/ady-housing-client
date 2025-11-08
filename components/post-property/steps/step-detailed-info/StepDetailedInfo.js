@@ -5,6 +5,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useState } from 'react';
 import FurnishingsDrwaer from '../furnishings-drawer/FurnishingsDrawer';
 import { shouldVisible } from '@/utils/utils';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 
 const StepDetailedInfo = ({ getState, setState }) => {
     const [openFurnishings, setOpenFurnishings] = useState(false)
@@ -23,24 +25,6 @@ const StepDetailedInfo = ({ getState, setState }) => {
         } else {
             setState((prev) => {
                 return { ...prev, [name]: value }
-            })
-        }
-    }
-
-    const handleAmenitiesChange = (e) => {
-        const isChecked = e.target.checked
-        const value = e.target.value
-        if (isChecked) {
-            const prevAmenities = getState?.amenities
-            const newAmenities = [...prevAmenities, value]
-            setState((prev) => {
-                return { ...prev, amenities: newAmenities }
-            })
-
-        } else {
-            const newAmenities = getState?.amenities?.filter((amenity) => amenity != value)
-            setState((prev) => {
-                return { ...prev, amenities: newAmenities }
             })
         }
     }
@@ -106,6 +90,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                                 onClick={() => openDrawer('furnishings')}
                             >
                                 {`${getState?.furnishings?.length > 0 ? 'Edit' : 'Add'} Furnishigs`}
+                                {getState?.furnishings?.length > 0 ? <EditIcon /> : <AddIcon />}
                             </Link>
                         </FormLabel>
 
@@ -128,16 +113,17 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {
                 shouldVisible(getState, 'societyAmenities') && (
                     <Box className={styles.furnishings_button_wrapper}>
-                        <FormLabel className={`${styles.radio_group_label} ${styles.row}`} id="societyAmenities-radio-buttons-group-label">
+                        <Box className={`${styles.radio_group_label} ${styles.row}`} id="societyAmenities-radio-buttons-group-label">
                             Society Amenities:
                             <Link
                                 component="button"
                                 variant="body"
                                 onClick={() => openDrawer('societyAmenities')}
                             >
-                                {`${getState?.societyAmenities?.length > 0 ? 'Edit' : 'Add'} Society Furnishigs`}
+                                {`${getState?.societyAmenities?.length > 0 ? 'Edit' : 'Add'} Society Amenities`}
+                                {getState?.societyAmenities?.length > 0 ? <EditIcon /> : <AddIcon />}
                             </Link>
-                        </FormLabel>
+                        </Box>
                         <Box className={styles.selected_furnishings}>
                             <span>{getState?.societyAmenities?.join(', ')}</span>
                         </Box>

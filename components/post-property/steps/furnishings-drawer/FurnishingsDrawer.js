@@ -1,4 +1,4 @@
-import { Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup, FormLabel, useMediaQuery, useTheme } from "@mui/material"
+import { Box, Button, Checkbox, Drawer, FormControl, FormControlLabel, FormGroup, FormLabel, useMediaQuery, useTheme } from "@mui/material"
 import { useState } from "react";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import styles from '../../PostNewProperty.module.css'
@@ -38,7 +38,7 @@ const FurnishingsDrwaer = ({ open, toggleDrawer, getState, setState, type = 'soc
                         height: isMobile ? "80%" :  "100%",
                         width: isMobile ? "100%" : "45%",
                         borderRadius: isMobile ? "1rem 1rem 0 0" : "0",
-                        padding: isMobile ? '1rem' : '2rem'
+                        padding: isMobile ? '1rem' : '2rem',
                     },
                 }
             }}
@@ -49,14 +49,14 @@ const FurnishingsDrwaer = ({ open, toggleDrawer, getState, setState, type = 'soc
                 onClick={toggleDrawer(false)}
                 sx={{ color: 'white', letterSpacing: '1px' }}
             >
-                {type == 'furnishings' ? 'Add Furnishings' : 'Add Social Amenities'}
+                Continue to Form
             </Button>
 
-            <FormControl fullWidth className={styles.form_item_wrapper}>
+            <FormControl fullWidth className={`${styles.form_item_wrapper}`}>
                 <FormGroup
                     aria-labelledby="select amenities"
                     name="amenities"
-                    className={styles.checkbox_group}
+                    className={`${styles.checkbox_group} ${styles.furnishings}`}
                 >
                     {
                         formFields?.lookingTo?.rent?.propertyCategory?.residential?.[type]?.map((item) => {
