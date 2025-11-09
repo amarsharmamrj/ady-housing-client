@@ -1,0 +1,36 @@
+export const formStepStates = {
+    step1: {
+        lookingTo: '',
+        propertyCategory: '',
+        propertySubCategory: '',
+    },
+
+    step2: {
+        name: '',
+        contact: '',
+        email: '',
+        address: '',
+        locality: '',
+        city: '',
+        builtUpArea: '',
+        carpetArea: '',
+        unit: '',
+    },
+
+    step3: {
+        furnishType: '',
+        furnishings: [],
+        societyAmenities: [],
+        nearBy: [],
+        possessionStatus: '',
+        zoneType: '',
+        propertyCondition: '',
+        ownership: '',
+        totalFloors: '0',
+        floors: '',
+    },
+    step4: {
+        price: '',
+        availableFrom: ''
+    }
+}

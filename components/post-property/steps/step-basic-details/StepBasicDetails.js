@@ -1,7 +1,6 @@
 import { FormControl, FormLabel, TextField, Box, Select, MenuItem } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
 import { areaUnits } from '@/constants/area-units'
-import { formFields } from '@/constants/post-property-form'
 import { shouldVisible } from '@/utils/utils'
 
 const StepBasicDetails = ({ getState, setState }) => {
@@ -10,6 +9,7 @@ const StepBasicDetails = ({ getState, setState }) => {
         const name = e.target.name
         const value = e.target.value
         setState((prev) => {
+            if (value !== '') delete prev?.inValidFields[name]
             return { ...prev, [name]: value }
         })
     }
@@ -19,8 +19,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             {shouldVisible(getState, 'name') &&
                 <Box className={styles.form_row_wrapper}>
                     {/* contact person name */}
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Contact Person Name</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'name') && styles.row_error}`}>
+                        <FormLabel>Contact Person Name <span className="star">*</span></FormLabel>
                         <TextField
                             type="text"
                             name="name"
@@ -41,8 +41,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 {/* contact number */}
                 {shouldVisible(getState, 'contact') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Contact Number</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'contact') && styles.row_error}`}>
+                        <FormLabel>Contact Number <span className="star">*</span></FormLabel>
                         <TextField
                             type="tel"
                             name="contact"
@@ -61,7 +61,7 @@ const StepBasicDetails = ({ getState, setState }) => {
 
                 {/* email */}
                 {shouldVisible(getState, 'email') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'email') && styles.row_error}`}>
                         <FormLabel>Email</FormLabel>
                         <TextField
                             type="email"
@@ -83,8 +83,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             {shouldVisible(getState, 'address') &&
                 <Box className={styles.form_row_wrapper}>
                     {/* full address */}
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Full Address</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'address') && styles.row_error}`}>
+                        <FormLabel>Full Address <span className="star">*</span></FormLabel>
                         <TextField
                             type="text"
                             name="address"
@@ -106,8 +106,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 {/* locality */}
                 {shouldVisible(getState, 'locality') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Locality</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'locality') && styles.row_error}`}>
+                        <FormLabel>Locality <span className="star">*</span></FormLabel>
                         <TextField
                             type="text"
                             name="locality"
@@ -126,8 +126,8 @@ const StepBasicDetails = ({ getState, setState }) => {
 
                 {/* city */}
                 {shouldVisible(getState, 'city') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>City</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'city') && styles.row_error}`}>
+                        <FormLabel>City <span className="star">*</span></FormLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="locality-select"
@@ -136,8 +136,6 @@ const StepBasicDetails = ({ getState, setState }) => {
                             onChange={handleOnChange}
                             size="small"
                             placeholder="Select city"
-                        // value={city}
-                        // onChange={handleChange}
                         >
                             <MenuItem value={'noida'}>Noida</MenuItem>
                             <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
@@ -149,8 +147,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 {/* built-up area */}
                 {shouldVisible(getState, 'builtUpArea') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Built-up Area</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'builtUpArea') && styles.row_error}`}>
+                        <FormLabel>Built-up Area <span className="star">*</span></FormLabel>
                         <TextField
                             type="number"
                             name="builtUpArea"
@@ -169,7 +167,7 @@ const StepBasicDetails = ({ getState, setState }) => {
 
                 {/* carpet area */}
                 {shouldVisible(getState, 'carpetArea') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper}`}>
                         <FormLabel>Carpet Area</FormLabel>
                         <TextField
                             type="number"
@@ -189,8 +187,8 @@ const StepBasicDetails = ({ getState, setState }) => {
 
                 {/* Unit */}
                 {shouldVisible(getState, 'unit') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Unit</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'unit') && styles.row_error}`}>
+                        <FormLabel>Unit <span className="star">*</span></FormLabel>
                         <Select
                             labelId="unit-label"
                             id="unit-select"

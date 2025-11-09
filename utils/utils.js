@@ -1,4 +1,6 @@
 import { formFields } from "@/constants/post-property-form";
+import { formStepStates } from "@/constants/post-property-step-states";
+import { isTimeView } from "@mui/x-date-pickers/internals";
 
 export const formatCurrency = (amount = 0) => {
     return new Intl.NumberFormat('en-IN', {
@@ -23,6 +25,20 @@ export const isMobile = () => {
     return window?.innerWidth < 600 ? true : false
 }
 
-export const shouldVisible = (getState, field) =>{
-    return  Object.hasOwn(formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory], field)
+export const shouldVisible = (getState, field) => {
+    return Object.hasOwn(formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory], field)
+}
+
+export const validateStepFields = (step, formStates) => {
+    const currentStep = `step${step + 1}`
+    const inValidFields = {}
+
+    const excludedFields = ['carpetArea']
+
+    for (let key in formStepStates[currentStep]) {
+        if (formStates[key] == '' && !excludedFields?.includes(key)) {
+            inValidFields[key] = 'This field is required.'
+        }
+    } 
+    return inValidFields
 }

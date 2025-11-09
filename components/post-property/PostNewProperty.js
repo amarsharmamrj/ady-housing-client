@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styles from './PostNewProperty.module.css'
 import { styled } from "@mui/material/styles";
-import { FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, StepConnector, stepConnectorClasses } from '@mui/material';
+import { Paper, StepConnector, stepConnectorClasses } from '@mui/material';
 import StepPropertyType from './steps/step-property-type/StepPropertyType';
 import StepBasicDetails from './steps/step-basic-details/StepBasicDetails';
 import StepDetailedInfo from './steps/step-detailed-info/StepDetailedInfo';
@@ -17,6 +17,8 @@ import StepPricing from './steps/step-pricing/StepPricing';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useRouter, useSearchParams } from "next/navigation";
+import { validateStepFields } from '@/utils/utils';
+import { SnackbarProvider, closeSnackbar, enqueueSnackbar } from 'notistack'
 
 const CustomConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -66,7 +68,7 @@ const PostNewProperty = () => {
         furnishings: [],
         societyAmenities: [],
         nearBy: [],
-        
+
         possessionStatus: '',
         zoneType: '',
         propertyCondition: '',
@@ -75,17 +77,40 @@ const PostNewProperty = () => {
         floors: '',
 
         price: '',
-        availableFrom: ''
+        availableFrom: '',
+
+        inValidFields: {},
+        isSubmitted: false
     })
 
 
-    // step - detailed info
-    const [amenities, setAmenities] = React.useState([]);
-    const [nearBy, setNearBy] = React.useState([]);
-
     const handleNext = () => {
+
+        setFormStates((prev) => {
+            return { ...prev, isSubmitted: true }
+        })
+
+        const inValidFields = validateStepFields(activeStep, formStates)
+        setFormStates((prev) => {
+            return { ...prev, inValidFields }
+        })
+        console.log('@@ inValidFields:', inValidFields)
+        const isActiveStepValid = Object.keys(inValidFields)?.length == 0
+
+        if (!isActiveStepValid) {
+            return enqueueSnackbar('Kindly fill required fields!', {
+                variant: 'error',
+                action: (snackbarId) => (
+                    <button className={styles.dismiss} onClick={() => { closeSnackbar(snackbarId) }}>
+                        Dismiss
+                    </button>
+                )
+            })
+        }
+
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         router.push(`/post-property?step=${activeStep + 2}`);
+
         console.log('@@ formStates:', formStates)
     };
 
@@ -100,6 +125,13 @@ const PostNewProperty = () => {
 
     return (
         <Paper elevation={4} className={styles.post_property}>
+            <SnackbarProvider
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+            />
+
             <Stepper activeStep={activeStep} alternativeLabel connector={<CustomConnector />}>
                 {steps.map((label, index) => {
                     const stepProps = {};
@@ -121,6 +153,11 @@ const PostNewProperty = () => {
                     );
                 })}
             </Stepper>
+
+            {
+                Object.keys(formStates?.inValidFields)?.length > 0 &&
+                <p className={styles.error_message}>All start(*) marked fields are required!</p>
+            }
 
             {activeStep === steps.length ? (
                 <React.Fragment>

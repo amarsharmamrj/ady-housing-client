@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
 import styles from '../../PostNewProperty.module.css'
 
 const StepPropertyType = ({ getState, setState }) => {
@@ -7,15 +7,18 @@ const StepPropertyType = ({ getState, setState }) => {
         const name = e.target.name
         const value = e.target.value
         setState((prev) => {
+            delete prev?.inValidFields[name]
             return { ...prev, [name]: value }
         })
     }
 
+    const error = 'This field is required.'
+
     return (
         <>
             {/* you want to */}
-            <FormControl fullWidth className={styles.form_item_wrapper}>
-                <FormLabel className={styles.radio_group_label} id="property-type-radio-buttons-group-label">You want to:</FormLabel>
+            <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'lookingTo') && styles.row_error}`}>
+                <FormLabel className={styles.radio_group_label} id="property-type-radio-buttons-group-label">You want to <span className="star">*</span></FormLabel>
                 <RadioGroup
                     aria-labelledby="select proper type"
                     name="lookingTo"
@@ -37,10 +40,11 @@ const StepPropertyType = ({ getState, setState }) => {
                     />
                 </RadioGroup>
             </FormControl>
+            {error && <FormHelperText className={styles.error}>{error}</FormHelperText>}
 
             {/* property category */}
-            <FormControl fullWidth className={styles.form_item_wrapper}>
-                <FormLabel className={styles.radio_group_label} id="property-category-radio-buttons-group-label">Property Category:</FormLabel>
+            <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertyCategory') && styles.row_error}`}>
+                <FormLabel className={styles.radio_group_label} id="property-category-radio-buttons-group-label">Property Category <span className="star">*</span></FormLabel>
                 <RadioGroup
                     aria-labelledby="select property category"
                     name="propertyCategory"
@@ -63,8 +67,8 @@ const StepPropertyType = ({ getState, setState }) => {
             </FormControl>
 
             {/* property sub category */}
-            <FormControl fullWidth className={styles.form_item_wrapper}>
-                <FormLabel className={styles.radio_group_label} id="property-sub-category-radio-buttons-group-label">Property Sub-Category:</FormLabel>
+            <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertySubCategory') && styles.row_error}`}>
+                <FormLabel className={styles.radio_group_label} id="property-sub-category-radio-buttons-group-label">Property Sub-Category <span className="star">*</span></FormLabel>
                 <RadioGroup
                     aria-labelledby="select property sub-category"
                     name="propertySubCategory"

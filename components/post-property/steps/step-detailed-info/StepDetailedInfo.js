@@ -8,6 +8,7 @@ import { shouldVisible } from '@/utils/utils';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import { formFields } from '@/constants/post-property-form';
+import { TryRounded } from '@mui/icons-material';
 
 const StepDetailedInfo = ({ getState, setState }) => {
     const [openFurnishings, setOpenFurnishings] = useState(false)
@@ -25,7 +26,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             })
         } else {
             setState((prev) => {
-                return { ...prev, [name]: value }
+                delete prev?.inValidFields[name]
+                return { ...prev, [name]: value}
             })
         }
     }
@@ -57,11 +59,12 @@ const StepDetailedInfo = ({ getState, setState }) => {
 
     return (
         <>
+            {console.log('@@ ##:', getState?.inValidFields)}
 
             {/* furnish type */}
             {shouldVisible(getState, 'furnishings') && (
                 <Box className={styles.form_row_wrapper}>
-                    <FormControl fullWidth className={styles.form_item_wrapper}>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'furnishType') && styles.row_error}`}>
                         <FormLabel className={styles.radio_group_label} id="furnishType-radio-buttons-group-label">Furnish Type:</FormLabel>
                         <RadioGroup
                             aria-labelledby="select furnishType"

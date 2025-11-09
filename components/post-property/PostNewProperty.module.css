@@ -27,7 +27,7 @@
 }
 
 .form_steps_wrapper {
-    padding: 1rem 0;
+    padding: 0.5 0 1rem 0;
 }
 
 .form_row_wrapper {
@@ -82,7 +82,7 @@
     justify-content: flex-start;
 }
 
-.post_property .radio_group_label.row button{
+.post_property .radio_group_label.row button {
     font-size: 0.8rem;
     display: flex;
     align-items: center;
@@ -90,13 +90,13 @@
     text-decoration: none;
 }
 
-.post_property .radio_group_label.row button:hover{
+.post_property .radio_group_label.row button:hover {
     text-decoration: underline;
 }
 
-.post_property .radio_group_label.row button svg{
-   height: 1.2rem;
-   width: 1.2rem;
+.post_property .radio_group_label.row button svg {
+    height: 1.2rem;
+    width: 1.2rem;
 }
 
 .post_property input {
@@ -131,10 +131,42 @@
     max-width: 160px;
 }
 
+/* form errors */
+.row_error .radio_label,
+.row_error .checkbox_label {
+    border: 2px solid #f76b6b;
+}
+
+.error_message {
+    color: #e41313;
+    margin-top: 2rem;
+}
+
+.row_error :global(.MuiOutlinedInput-root) fieldset {
+    border: 2px solid #f76b6b;
+}
+
+.row_error :global(.MuiOutlinedInput-root):hover fieldset {
+    border: 2px solid #b60505;
+}
+
+.dismiss {
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .radio_label.selected,
 .checkbox_label.selected {
     border: 2px solid var(--color-primary);
     background-color: rgb(31 171 137 / 0.1);
+}
+
+.error {
+    /* color: red; */
 }
 
 
@@ -162,6 +194,10 @@
     .post_property label.row {
         display: flex;
         justify-content: space-between;
+    }
+
+    .error_message {
+        margin-top: 1em;
     }
 
 }

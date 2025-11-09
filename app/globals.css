@@ -7,6 +7,7 @@
   --color-secondary: #ffb703e6;
   --color-tertiary: #0f4c81;
   --color-footer: #1e293b;
+  --color-error: #f76b6b;
 
   /* breakpoints */
   --breakpoint-max-width: 1400px
@@ -37,6 +38,10 @@ body {
 section {
   padding: 4rem 3rem 3rem 3rem;
   margin: 0 auto;
+}
+
+.star {
+  color: #e42b2b;
 }
 
 * {
