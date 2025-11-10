@@ -27,7 +27,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
         } else {
             setState((prev) => {
                 delete prev?.inValidFields[name]
-                return { ...prev, [name]: value}
+                return { ...prev, [name]: value }
             })
         }
     }
@@ -65,7 +65,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {shouldVisible(getState, 'furnishings') && (
                 <Box className={styles.form_row_wrapper}>
                     <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'furnishType') && styles.row_error}`}>
-                        <FormLabel className={styles.radio_group_label} id="furnishType-radio-buttons-group-label">Furnish Type:</FormLabel>
+                        <FormLabel className={styles.radio_group_label} id="furnishType-radio-buttons-group-label">Furnish Type <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select furnishType"
                             name="furnishType"
@@ -201,8 +201,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {/* possession status */}
             {shouldVisible(getState, 'possessionStatus') && (
                 <Box className={styles.form_row_wrapper}>
-                    <FormControl fullWidth className={styles.form_item_wrapper}>
-                        <FormLabel className={styles.radio_group_label} id="possessionStatus-radio-buttons-group-label">Possession Status:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'possessionStatus') && styles.row_error}`}>
+                        <FormLabel className={styles.radio_group_label} id="possessionStatus-radio-buttons-group-label">Possession Status <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select possessionStatus"
                             name="possessionStatus"
@@ -231,8 +231,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {/* zoneType */}
             {shouldVisible(getState, 'zoneType') && (
                 <Box className={styles.form_row_wrapper}>
-                    <FormControl fullWidth className={styles.form_item_wrapper}>
-                        <FormLabel className={styles.radio_group_label} id="zoneType-radio-buttons-group-label">Zone Type:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'zoneType') && styles.row_error}`}>
+                        <FormLabel className={styles.radio_group_label} id="zoneType-radio-buttons-group-label">Zone Type <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select zone type"
                             name="zoneType"
@@ -262,8 +262,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {/*  property condition */}
             {shouldVisible(getState, 'propertyCondition') && (
                 <Box className={styles.form_row_wrapper}>
-                    <FormControl fullWidth className={styles.form_item_wrapper}>
-                        <FormLabel className={styles.radio_group_label} id="propertyCondition-radio-buttons-group-label">Property Condition:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertyCondition') && styles.row_error}`}>
+                        <FormLabel className={styles.radio_group_label} id="propertyCondition-radio-buttons-group-label">Property Condition <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select propertyCondition"
                             name="propertyCondition"
@@ -292,8 +292,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             {/*  ownership */}
             {shouldVisible(getState, 'ownership') && (
                 <Box className={styles.form_row_wrapper}>
-                    <FormControl fullWidth className={styles.form_item_wrapper}>
-                        <FormLabel className={styles.radio_group_label} id="ownership-radio-buttons-group-label">Ownership:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'ownership') && styles.row_error}`}>
+                        <FormLabel className={styles.radio_group_label} id="ownership-radio-buttons-group-label">Ownership <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select ownership"
                             name="ownership"
@@ -322,8 +322,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 {/* built-up area */}
                 {shouldVisible(getState, 'totalFloors') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Total Floors:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'totalFloors') && styles.row_error}`}>
+                        <FormLabel>Total Floors <span className="star">*</span></FormLabel>
                         <TextField
                             type="number"
                             name="totalFloors"
@@ -340,10 +340,10 @@ const StepDetailedInfo = ({ getState, setState }) => {
                     </FormControl>
                 }
 
-                {/* Unit */}
+                {/* Floors */}
                 {shouldVisible(getState, 'floors') &&
-                    <FormControl fullWidth variant="outlined" className={styles.form_item_wrapper}>
-                        <FormLabel>Floors:</FormLabel>
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'floors') && styles.row_error}`}>
+                        <FormLabel>Floors <span className="star">*</span></FormLabel>
                         <Select
                             labelId="floors-label"
                             id="floors-select"

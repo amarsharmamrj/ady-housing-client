@@ -40,7 +40,6 @@ const StepPropertyType = ({ getState, setState }) => {
                     />
                 </RadioGroup>
             </FormControl>
-            {error && <FormHelperText className={styles.error}>{error}</FormHelperText>}
 
             {/* property category */}
             <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertyCategory') && styles.row_error}`}>

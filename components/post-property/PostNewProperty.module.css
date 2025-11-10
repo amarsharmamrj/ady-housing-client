@@ -146,6 +146,10 @@
     border: 2px solid #f76b6b;
 }
 
+/* .row_error :global(.MuiSelect-root) {
+    border: 2px solid #f76b6b;
+} */
+
 .row_error :global(.MuiOutlinedInput-root):hover fieldset {
     border: 2px solid #b60505;
 }

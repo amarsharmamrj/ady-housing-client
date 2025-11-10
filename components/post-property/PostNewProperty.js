@@ -73,7 +73,7 @@ const PostNewProperty = () => {
         zoneType: '',
         propertyCondition: '',
         ownership: '',
-        totalFloors: '0',
+        totalFloors: '',
         floors: '',
 
         price: '',
@@ -83,14 +83,18 @@ const PostNewProperty = () => {
         isSubmitted: false
     })
 
-
     const handleNext = () => {
 
         setFormStates((prev) => {
             return { ...prev, isSubmitted: true }
         })
 
-        const inValidFields = validateStepFields(activeStep, formStates)
+        const excludeFields = formStates?.propertyCategory === 'residential' ?
+            ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities'] :
+            ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities']
+
+
+        const inValidFields = validateStepFields(activeStep, formStates, excludeFields)
         setFormStates((prev) => {
             return { ...prev, inValidFields }
         })

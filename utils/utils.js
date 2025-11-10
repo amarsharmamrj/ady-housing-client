@@ -29,14 +29,12 @@ export const shouldVisible = (getState, field) => {
     return Object.hasOwn(formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory], field)
 }
 
-export const validateStepFields = (step, formStates) => {
+export const validateStepFields = (step, formStates, excludeFields) => {
     const currentStep = `step${step + 1}`
     const inValidFields = {}
 
-    const excludedFields = ['carpetArea']
-
     for (let key in formStepStates[currentStep]) {
-        if (formStates[key] == '' && !excludedFields?.includes(key)) {
+        if (formStates[key] == '' && !excludeFields?.includes(key)) {
             inValidFields[key] = 'This field is required.'
         }
     } 
