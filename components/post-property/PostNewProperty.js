@@ -194,7 +194,7 @@ const PostNewProperty = () => {
 
                         {/* step - basic details */}
                         {
-                            activeStep === 3 && <StepPricing />
+                            activeStep === 3 && <StepPricing getState={formStates} setState={setFormStates} />
                         }
                     </Box>
 

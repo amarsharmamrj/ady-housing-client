@@ -59,8 +59,6 @@ const StepDetailedInfo = ({ getState, setState }) => {
 
     return (
         <>
-            {console.log('@@ ##:', getState?.inValidFields)}
-
             {/* furnish type */}
             {shouldVisible(getState, 'furnishings') && (
                 <Box className={styles.form_row_wrapper}>

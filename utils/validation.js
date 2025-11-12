@@ -1,0 +1,42 @@
+export const validateName = (value) => {
+    if (value?.length > 50) return 'Maximum 50 characters allowed.'
+    return ''
+}
+
+export const validateEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(value)) return 'Email should be valid.'
+    return ''
+}
+
+export const validateContact = (value) => {
+    const mobileRegex = /^[6-9]\d{9}$/;
+    if (!mobileRegex.test(value)) return 'Contact number should be valid.'
+    return ''
+}
+
+
+export const validateAddress = (value) => {
+    const trimmedValue = value.trim();
+    if (trimmedValue === "") return "Address is required.";
+    if (trimmedValue.length < 5) return "Address must be at least 5 characters.";
+    if (trimmedValue.length > 200) return "Address must within characters.";
+    if (!/^[a-zA-Z0-9\s,:./-]+$/.test(trimmedValue)) return "Address contains invalid characters.";
+    return ''
+}
+
+
+export const validateLocality = (value) => {
+    const trimmedValue = value.trim();
+    if (trimmedValue === "") return "Address is required.";
+    if (trimmedValue.length < 5) return "Address must be at least 5 characters.";
+    if (trimmedValue.length > 40) return "Address must be within 40 characters.";
+    if (!/^[a-zA-Z0-9\s,./-]+$/.test(trimmedValue)) return "Address contains invalid characters.";
+    return ''
+}
+
+export const validateBuiltupArea = (value) => {
+    if (value.includes('e')) return "Entered value should be valid.";
+    if (value < 1) return "Entered value should be positive number.";
+    return ''
+}

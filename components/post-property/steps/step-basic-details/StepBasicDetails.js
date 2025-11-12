@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, TextField, Box, Select, MenuItem } from '@mui/material'
+import { FormControl, FormLabel, TextField, Box, Select, MenuItem, FormHelperText } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
 import { areaUnits } from '@/constants/area-units'
 import { shouldVisible } from '@/utils/utils'
@@ -13,6 +13,8 @@ const StepBasicDetails = ({ getState, setState }) => {
             return { ...prev, [name]: value }
         })
     }
+
+    console.log('@@ invalidFields:', getState?.inValidFields)
 
     return (
         <>
@@ -34,6 +36,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'name') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.name}</FormHelperText>}
                     </FormControl>
                 </Box>
             }
@@ -56,6 +59,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'contact') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.contact}</FormHelperText>}
                     </FormControl>
                 }
 
@@ -76,6 +80,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'email') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.email}</FormHelperText>}
                     </FormControl>
                 }
             </Box>
@@ -98,6 +103,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'address') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.address}</FormHelperText>}
                     </FormControl>
 
                 </Box>
@@ -121,6 +127,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'locality') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.locality}</FormHelperText>}
                     </FormControl>
                 }
 
@@ -162,6 +169,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'builtUpArea') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.builtUpArea}</FormHelperText>}
                     </FormControl>
                 }
 

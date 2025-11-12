@@ -142,7 +142,8 @@
     margin-top: 2rem;
 }
 
-.row_error :global(.MuiOutlinedInput-root) fieldset {
+.row_error :global(.MuiOutlinedInput-root) fieldset,
+.row_error :global(.MuiPickersOutlinedInput-root) fieldset {
     border: 2px solid #f76b6b;
 }
 
@@ -150,7 +151,8 @@
     border: 2px solid #f76b6b;
 } */
 
-.row_error :global(.MuiOutlinedInput-root):hover fieldset {
+.row_error :global(.MuiOutlinedInput-root):hover fieldset,
+.row_error :global(.MuiPickersOutlinedInput-root):hover fieldset {
     border: 2px solid #b60505;
 }
 
@@ -171,6 +173,10 @@
 
 .error {
     /* color: red; */
+}
+
+.errorText {
+    color: #e41313;
 }
 
 
