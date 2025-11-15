@@ -76,8 +76,12 @@ const PostNewProperty = () => {
         totalFloors: '',
         floors: '',
 
+        // bhk create
+
         price: '',
         availableFrom: '',
+        // shareWithAgents create
+        // securityDeposit
 
         inValidFields: {},
         isSubmitted: false
@@ -112,11 +116,37 @@ const PostNewProperty = () => {
             })
         }
 
+        console.log('@@', activeStep === steps.length - 1, activeStep, steps.length - 1)
+        // submit form
+        if (activeStep === steps.length - 1) {
+            submitForm()
+        }
+
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         router.push(`/post-property?step=${activeStep + 2}`);
 
         console.log('@@ formStates:', formStates)
     };
+
+    const submitForm = async () => {
+        console.log('@@ submit form:', formStates)
+        delete formStates.inValidFields
+        delete formStates.isSubmitted
+        try {
+            const res = await fetch("http://localhost:4000/api/property", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formStates)
+            });
+
+            if (!res.ok) throw new Error("Failed to fetch properties");
+            return res.json();
+        } catch (error) {
+            console.log('api error:', error)
+        }
+    }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
