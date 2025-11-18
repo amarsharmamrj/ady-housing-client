@@ -85,6 +85,30 @@ const StepBasicDetails = ({ getState, setState }) => {
                 }
             </Box>
 
+            {shouldVisible(getState, 'buildingName') &&
+                <Box className={styles.form_row_wrapper}>
+                    {/* full buildingName */}
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'buildingName') && styles.row_error}`}>
+                        <FormLabel>Building / Apartment / Society Name <span className="star">*</span></FormLabel>
+                        <TextField
+                            type="text"
+                            name="buildingName"
+                            value={getState?.buildingName}
+                            onChange={handleOnChange}
+                            placeholder="Enter your full buildingName"
+                            slotProps={{
+                                htmlInput: {
+                                    maxLength: 100
+                                }
+                            }}
+                            size="small"
+                        />
+                        {Object.hasOwn(getState?.inValidFields, 'buildingName') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.buildingName}</FormHelperText>}
+                    </FormControl>
+
+                </Box>
+            }
+
             {shouldVisible(getState, 'address') &&
                 <Box className={styles.form_row_wrapper}>
                     {/* full address */}

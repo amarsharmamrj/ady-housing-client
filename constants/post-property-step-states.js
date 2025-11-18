@@ -9,6 +9,7 @@ export const formStepStates = {
         name: '',
         contact: '',
         email: '',
+        buildingName: '',
         address: '',
         locality: '',
         city: '',
@@ -31,6 +32,7 @@ export const formStepStates = {
     },
     step4: {
         price: '',
-        availableFrom: ''
+        availableFrom: '',
+        securityDepositType: ''
     }
 }

@@ -57,6 +57,7 @@ const PostNewProperty = () => {
         name: '',
         contact: '',
         email: '',
+        buildingName: '',
         address: '',
         locality: '',
         city: '',
@@ -68,6 +69,7 @@ const PostNewProperty = () => {
         furnishings: [],
         societyAmenities: [],
         nearBy: [],
+        bhk: '',
 
         possessionStatus: '',
         zoneType: '',
@@ -76,15 +78,21 @@ const PostNewProperty = () => {
         totalFloors: '',
         floors: '',
 
-        // bhk create
-
         price: '',
         availableFrom: '',
+        securityDepositType: '',
+        securityDeposit: '',
         // shareWithAgents create
-        // securityDeposit
 
         inValidFields: {},
-        isSubmitted: false
+        isSubmitted: false,
+
+        images: [
+            "https://images.pexels.com/photos/2783862/pexels-photo-2783862.jpeg",
+            "https://images.pexels.com/photos/290275/pexels-photo-290275.jpeg",
+            "https://images.pexels.com/photos/188035/pexels-photo-188035.jpeg",
+            "https://images.pexels.com/photos/1398760/pexels-photo-1398760.jpeg"
+        ]
     })
 
     const handleNext = () => {
@@ -93,9 +101,22 @@ const PostNewProperty = () => {
             return { ...prev, isSubmitted: true }
         })
 
-        const excludeFields = formStates?.propertyCategory === 'residential' ?
-            ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities'] :
-            ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities']
+        let excludeFields = []
+        if (formStates?.lookingTo === 'sell') {
+            if (formStates?.propertyCategory === 'residential') {
+                excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities', 'securityDepositType']
+            } else {
+                excludeFields = ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType']
+            }
+        }
+        if (formStates?.lookingTo === 'rent') {
+            if (formStates?.propertyCategory === 'residential') {
+                excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities']
+            } else {
+                excludeFields = ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType']
+            }
+        }
+
 
 
         const inValidFields = validateStepFields(activeStep, formStates, excludeFields)
@@ -132,6 +153,7 @@ const PostNewProperty = () => {
         console.log('@@ submit form:', formStates)
         delete formStates.inValidFields
         delete formStates.isSubmitted
+        delete formStates.securityDepositType
         try {
             const res = await fetch("http://localhost:4000/api/property", {
                 method: "POST",

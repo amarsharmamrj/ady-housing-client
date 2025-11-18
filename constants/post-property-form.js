@@ -8,9 +8,10 @@ export const formFields = {
                     contact: '',
                     email: '',
                     city: '',
+                    buildingName: '',
                     address: '',
                     locality: '',
-                    bhk: ['1RK', '1BHK', '2BHK', '3BHK', '4BHK', '5BHK'],
+                    bhk: ['1 RK', '1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK', '6+ BHK'],
                     builtUpArea: '',
                     unit: '',
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
@@ -19,7 +20,7 @@ export const formFields = {
                     nearbyList: [],
                     price: '',   // rent monthly
                     availableFrom: '',
-                    securityDeposit: ['None', '1 month', '2 month', 'custom']   // if custom => input for it 
+                    securityDepositType: ['None', '1 Month', '2 Month', 'Custom']   // if custom => input for it 
                 },
                 commercial: {
                     propertyType: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
@@ -27,6 +28,7 @@ export const formFields = {
                     contact: '',
                     email: '',
                     city: '',
+                    buildingName: '',
                     address: '',
                     locality: '',
                     nearbyList: [],
@@ -39,8 +41,8 @@ export const formFields = {
                     unit: '',
                     ownership: ['Freehold', 'Leasehold', 'Cooperative Society', 'Power of attorney'],
                     totalFloors: '',
-                    floors: [1, 2, 5, 100], // dropdown list length should depend on totalFloors,
-                    price: ''    // rent yearly
+                    floors: [1, 2, 5, 100],
+                    price: ''
                 }
             }
         },
@@ -52,9 +54,10 @@ export const formFields = {
                     contact: '',
                     email: '',
                     city: '',
+                    buildingName: '',
                     address: '',
                     locality: '',
-                    bhk: ['1RK', '1BHK', '2BHK', '+3BHK'],
+                    bhk: ['1 RK', '1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK', '6+ BHK'],
                     builtUpArea: '',
                     unit: '',
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
@@ -70,6 +73,7 @@ export const formFields = {
                     contact: '',
                     email: '',
                     city: '',
+                    buildingName: '',
                     address: '',
                     locality: '',
                     nearbyList: [],

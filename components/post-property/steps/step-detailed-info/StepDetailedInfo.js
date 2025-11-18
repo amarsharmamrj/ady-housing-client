@@ -44,6 +44,16 @@ const StepDetailedInfo = ({ getState, setState }) => {
         console.log('@@:', value)
     }
 
+    const handleBhkChange = (e) => {
+        const value = e.target.value
+        console.log('@@ value:', value)
+        setState((prev) => {
+            return { ...prev, bhk: value }
+        })
+
+    }
+
+
     const handleNearbyChange = (event, newValue) => {
         if (newValue.length <= 5) {
             setState((prev) => {
@@ -196,6 +206,31 @@ const StepDetailedInfo = ({ getState, setState }) => {
                     </Box>
                 )}
 
+            {/* bhk */}
+            {shouldVisible(getState, 'bhk') &&
+                <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'bhk') && styles.row_error}`}>
+                    <FormLabel>BHK <span className="star">*</span></FormLabel>
+                    <Select
+                            labelId="demo-simple-select-label"
+                            id="locality-select"
+                            value={getState?.bhk}
+                            name="bhk"
+                            onChange={handleOnChange}
+                            size="small"
+                            placeholder="Select bhk"
+                        >
+                        <MenuItem disabled value="">
+                            <em>Select bhk</em>
+                        </MenuItem>
+                        {formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory]?.bhk?.map((item) => (
+                            <MenuItem key={item} value={item}>
+                                <ListItemText primary={item} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            }
+
             {/* possession status */}
             {shouldVisible(getState, 'possessionStatus') && (
                 <Box className={styles.form_row_wrapper}>
@@ -318,7 +353,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
             )}
 
             <Box className={styles.form_row_wrapper}>
-                {/* built-up area */}
+                {/* total floors */}
                 {shouldVisible(getState, 'totalFloors') &&
                     <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'totalFloors') && styles.row_error}`}>
                         <FormLabel>Total Floors <span className="star">*</span></FormLabel>
@@ -347,6 +382,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                             id="floors-select"
                             size="medium"
                             name="floors"
+                            disabled={getState?.totalFloors === ''}
                             multiple
                             value={getState?.floors || []}
                             renderValue={(selected) => selected.join(', ')}
