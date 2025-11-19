@@ -1,15 +1,24 @@
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
 import styles from '../../PostNewProperty.module.css'
+import { formFields } from "@/constants/post-property-form"
 
 const StepPropertyType = ({ getState, setState }) => {
 
     const handleOnChange = (e) => {
         const name = e.target.name
         const value = e.target.value
-        setState((prev) => {
-            delete prev?.inValidFields[name]
-            return { ...prev, [name]: value }
-        })
+
+        if (name === 'propertyCategory') {
+            setState((prev) => {
+                delete prev?.inValidFields[name]
+                return { ...prev, propertySubCategory: '', [name]: value }
+            })
+        } else {
+            setState((prev) => {
+                delete prev?.inValidFields[name]
+                return { ...prev, [name]: value }
+            })
+        }
     }
 
     const error = 'This field is required.'
@@ -55,7 +64,8 @@ const StepPropertyType = ({ getState, setState }) => {
                         className={`${styles.radio_label} ${getState?.propertyCategory === "residential" ? styles.selected : ""}`}
                         value="residential"
                         control={<Radio />}
-                        label="Residential" />
+                        label="Residential"
+                    />
                     <FormControlLabel
                         className={`${styles.radio_label} ${getState?.propertyCategory === "commercial" ? styles.selected : ""}`}
                         value="commercial"
@@ -66,34 +76,32 @@ const StepPropertyType = ({ getState, setState }) => {
             </FormControl>
 
             {/* property sub category */}
-            <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertySubCategory') && styles.row_error}`}>
-                <FormLabel className={styles.radio_group_label} id="property-sub-category-radio-buttons-group-label">Property Sub-Category <span className="star">*</span></FormLabel>
-                <RadioGroup
-                    aria-labelledby="select property sub-category"
-                    name="propertySubCategory"
-                    value={getState?.propertySubCategory}
-                    onChange={handleOnChange}
-                    className={styles.radio_group}
-                >
-                    <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertySubCategory === "flat" ? styles.selected : ""}`}
-                        value="flat"
-                        control={<Radio />}
-                        label="Flat / Apartment" />
-                    <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertySubCategory === "house" ? styles.selected : ""}`}
-                        value="house"
-                        control={<Radio />}
-                        label="House / Villa"
-                    />
-                    <FormControlLabel
-                        className={`${styles.radio_label} ${getState?.propertySubCategory === "plot" ? styles.selected : ""}`}
-                        value="plot"
-                        control={<Radio />}
-                        label="Plot / Land"
-                    />
-                </RadioGroup>
-            </FormControl>
+
+            {
+                getState?.lookingTo !== '' && getState?.propertyCategory !== '' && (
+                    <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'propertySubCategory') && styles.row_error}`}>
+                        <FormLabel className={styles.checkbox_group_label} id="property-sub-category-radio-buttons-group-label">Property Sub-Category <span className="star">*</span></FormLabel>
+                        <RadioGroup
+                            aria-labelledby="select property sub-category"
+                            name="propertySubCategory"
+                            value={getState?.propertySubCategory}
+                            onChange={handleOnChange}
+                            className={styles.checkbox_group}
+                        >
+                            {formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory]?.propertySubCategory?.map((item) => (
+                                <FormControlLabel
+                                    key={item}
+                                    className={`${styles.checkbox_label} ${getState?.propertySubCategory === item ? styles.selected : ""}`}
+                                    value={item}
+                                    control={<Radio />}
+                                    label={item}
+                                />
+                            )
+                            )}
+                        </RadioGroup>
+                    </FormControl>
+                )
+            }
         </>
     )
 }

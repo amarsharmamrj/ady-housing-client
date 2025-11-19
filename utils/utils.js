@@ -1,7 +1,7 @@
 import { formFields } from "@/constants/post-property-form";
 import { formStepStates } from "@/constants/post-property-step-states";
 import { isTimeView } from "@mui/x-date-pickers/internals";
-import { validateAddress, validateBuiltupArea, validateContact, validateEmail, validateLocality, validateName } from './validation'
+import { validateAddress, validateBuiltupArea, validateCarpetupArea, validateContact, validateEmail, validateFloors, validateLocality, validateName } from './validation'
 
 export const formatCurrency = (amount = 0) => {
     return new Intl.NumberFormat('en-IN', {
@@ -36,11 +36,13 @@ export const validateStepFields = (step, formStates, excludeFields) => {
 
     for (let key in formStepStates[currentStep]) {
         if (formStates[key] == '' && !excludeFields?.includes(key)) {
-            inValidFields[key] = 'This field is required.'
+            if(key !== 'carpetArea'){
+                inValidFields[key] = 'This field is required.'
+            }
         }
 
         const value = formStates[key]
-        if (formStates[key] != '') {
+        if (formStates[key] != ''  && !excludeFields?.includes(key)) {
 
             if (key == 'name') {
                 const error = validateName(value);
@@ -69,6 +71,16 @@ export const validateStepFields = (step, formStates, excludeFields) => {
 
             if (key == 'builtUpArea' || key == 'price') {
                 const error = validateBuiltupArea(value);
+                if (error) inValidFields[key] = error;
+            }
+            
+            if (key == 'carpetArea') {
+                const error = validateCarpetupArea(value, formStates?.builtUpArea);
+                if (error) inValidFields[key] = error;
+            }
+
+             if (key == 'floors') {
+                const error = validateFloors(value, formStates?.totalFloors);
                 if (error) inValidFields[key] = error;
             }
         }

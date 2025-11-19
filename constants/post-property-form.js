@@ -3,7 +3,7 @@ export const formFields = {
         rent: {
             propertyCategory: {
                 residential: {
-                    propertyType: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
+                    propertySubCategory: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
                     name: '',
                     contact: '',
                     email: '',
@@ -23,7 +23,7 @@ export const formFields = {
                     securityDepositType: ['None', '1 Month', '2 Month', 'Custom']   // if custom => input for it 
                 },
                 commercial: {
-                    propertyType: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
+                    propertySubCategory: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
                     name: '',
                     contact: '',
                     email: '',
@@ -49,7 +49,7 @@ export const formFields = {
         sell: {
             propertyCategory: {
                 residential: {
-                    propertyType: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
+                    propertySubCategory: ['Apartment', 'Independent House', 'Duplex', 'Independent Floor', 'Villa', 'Penthouse', 'Studio', 'Farm House'],
                     name: '',
                     contact: '',
                     email: '',
@@ -68,7 +68,7 @@ export const formFields = {
                     availableFrom: '',
                 },
                 commercial: {
-                    propertyType: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
+                    propertySubCategory: ['Office', 'Rental Shop', 'Showroom', 'Ware House', 'Plot', 'Others'],
                     name: '',
                     contact: '',
                     email: '',

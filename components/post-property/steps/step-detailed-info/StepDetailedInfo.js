@@ -1,4 +1,4 @@
-import { FormControl, Checkbox, Autocomplete, Chip, FormLabel, TextField, Typography, Box, Select, MenuItem, FormControlLabel, FormGroup, RadioGroup, Radio, Button, IconButton, Link, ListItemText } from '@mui/material'
+import { FormControl, Checkbox, Autocomplete, Chip, FormLabel, TextField, Typography, Box, Select, MenuItem, FormControlLabel, FormGroup, RadioGroup, Radio, Button, IconButton, Link, ListItemText, FormHelperText } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
 import { amenitiesList } from '@/constants/amenities'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
@@ -170,7 +170,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                 shouldVisible(getState, 'nearbyList') && (
                     <Box className={styles.form_row_wrapper}>
                         <FormControl fullWidth className={styles.form_item_wrapper}>
-                            <FormLabel className={styles.radio_group_label} id="nearby-buttons-group-label">Nearby Areas or Landmarks:</FormLabel>
+                            <FormLabel className={styles.radio_group_label} id="nearby-buttons-group-label">Nearby Areas or Landmarks</FormLabel>
                             <Autocomplete
                                 multiple
                                 freeSolo
@@ -211,14 +211,14 @@ const StepDetailedInfo = ({ getState, setState }) => {
                 <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'bhk') && styles.row_error}`}>
                     <FormLabel>BHK <span className="star">*</span></FormLabel>
                     <Select
-                            labelId="demo-simple-select-label"
-                            id="locality-select"
-                            value={getState?.bhk}
-                            name="bhk"
-                            onChange={handleOnChange}
-                            size="small"
-                            placeholder="Select bhk"
-                        >
+                        labelId="demo-simple-select-label"
+                        id="locality-select"
+                        value={getState?.bhk}
+                        name="bhk"
+                        onChange={handleOnChange}
+                        size="small"
+                        placeholder="Select bhk"
+                    >
                         <MenuItem disabled value="">
                             <em>Select bhk</em>
                         </MenuItem>
@@ -339,7 +339,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                                     return (
                                         <FormControlLabel
                                             key={item}
-                                            className={`${styles.radio_label} ${getState?.ownership === item ? styles.selected : ""}`}
+                                            className={`${styles.checkbox_label} ${getState?.ownership === item ? styles.selected : ""}`}
                                             value={item}
                                             control={<Radio />}
                                             label={item}
@@ -370,6 +370,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                             }}
                             size="medium"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'totalFloors') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.totalFloors}</FormHelperText>}
                     </FormControl>
                 }
 
@@ -399,6 +400,8 @@ const StepDetailedInfo = ({ getState, setState }) => {
                                 </MenuItem>
                             ))}
                         </Select>
+                        {Object.hasOwn(getState?.inValidFields, 'floors') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.floors}</FormHelperText>}
+
                     </FormControl>
                 }
             </Box>

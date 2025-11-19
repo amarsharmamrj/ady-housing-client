@@ -167,6 +167,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             onChange={handleOnChange}
                             size="small"
                             placeholder="Select city"
+                            displayEmpty
                         >
                             <MenuItem value={'noida'}>Noida</MenuItem>
                             <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
@@ -199,7 +200,7 @@ const StepBasicDetails = ({ getState, setState }) => {
 
                 {/* carpet area */}
                 {shouldVisible(getState, 'carpetArea') &&
-                    <FormControl fullWidth className={`${styles.form_item_wrapper}`}>
+                   <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'carpetArea') && styles.row_error}`}>
                         <FormLabel>Carpet Area</FormLabel>
                         <TextField
                             type="number"
@@ -214,6 +215,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             }}
                             size="small"
                         />
+                        {Object.hasOwn(getState?.inValidFields, 'carpetArea') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.carpetArea}</FormHelperText>}
                     </FormControl>
                 }
 

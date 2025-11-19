@@ -40,3 +40,16 @@ export const validateBuiltupArea = (value) => {
     if (value < 1) return "Entered value should be positive number.";
     return ''
 }
+
+export const validateCarpetupArea = (value, builtUpArea) => {
+    if (value.includes('e')) return "Entered value should be valid.";
+    if (value < 1) return "Entered value should be positive number.";
+    if (value > builtUpArea) return "Carpet area cannot be less than built up area.";
+    return ''
+}
+
+export const validateFloors = (value, totalFloors) => {
+    console.log('@@ value:', value, totalFloors)
+    if (value?.length < totalFloors) return `Select all the ${totalFloors} floors.`;
+    return ''
+}

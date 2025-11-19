@@ -29,6 +29,7 @@ export const formStepStates = {
         ownership: '',
         totalFloors: '0',
         floors: '',
+        bhk: ''
     },
     step4: {
         price: '',

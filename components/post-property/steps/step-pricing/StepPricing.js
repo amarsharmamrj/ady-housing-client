@@ -56,7 +56,7 @@ const StepPricing = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 {/* price */}
                 <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'price') && styles.row_error}`}>
-                    <FormLabel>Property Price <span className="star">*</span></FormLabel>
+                    <FormLabel> {getState?.lookingTo === 'rent' ? 'Rent (per month)' :'Property Price'} <span className="star">*</span></FormLabel>
                     <TextField
                         type="number"
                         name="price"
@@ -78,17 +78,18 @@ const StepPricing = ({ getState, setState }) => {
             {
                 shouldVisible(getState, 'securityDepositType') && (
                     <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'securityDepositType') && styles.row_error}`}>
-                        <FormLabel className={styles.radio_group_label} id="security-deposit-radio-buttons-group-label">Security Deposit <span className="star">*</span></FormLabel>
+                        <FormLabel className={styles.checkbox_group_label} id="security-deposit-radio-buttons-group-label">Security Deposit <span className="star">*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="select property sub-category"
                             name="securityDepositType"
                             value={getState?.securityDepositType}
                             onChange={handleSecurityDepositTypeOnChange}
-                            className={styles.radio_group}
+                            className={styles.checkbox_group}
                         >
                             {formFields.lookingTo[getState?.lookingTo]?.propertyCategory[getState?.propertyCategory]?.securityDepositType?.map((item) => (
                                 <FormControlLabel
-                                    className={`${styles.radio_label} ${getState?.securityDepositType === item ? styles.selected : ""}`}
+                                    key={item}
+                                    className={`${styles.checkbox_label} ${getState?.securityDepositType === item ? styles.selected : ""}`}
                                     value={item}
                                     control={<Radio />}
                                     label={item}

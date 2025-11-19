@@ -63,7 +63,7 @@ const PostNewProperty = () => {
         city: '',
         builtUpArea: '',
         carpetArea: '',
-        unit: '',
+        unit: 'square-feet',
 
         furnishType: '',
         furnishings: [],
@@ -106,19 +106,17 @@ const PostNewProperty = () => {
             if (formStates?.propertyCategory === 'residential') {
                 excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities', 'securityDepositType']
             } else {
-                excludeFields = ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType']
+                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', 'bhk']
             }
         }
         if (formStates?.lookingTo === 'rent') {
             if (formStates?.propertyCategory === 'residential') {
                 excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities']
             } else {
-                excludeFields = ['carpetArea', 'nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType']
+                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', 'bhk']
             }
         }
-
-
-
+     
         const inValidFields = validateStepFields(activeStep, formStates, excludeFields)
         setFormStates((prev) => {
             return { ...prev, inValidFields }
@@ -137,7 +135,6 @@ const PostNewProperty = () => {
             })
         }
 
-        console.log('@@', activeStep === steps.length - 1, activeStep, steps.length - 1)
         // submit form
         if (activeStep === steps.length - 1) {
             submitForm()
@@ -228,6 +225,22 @@ const PostNewProperty = () => {
             ) : (
                 <React.Fragment>
 
+                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                        {
+                            activeStep !== 0 && (
+                                <Button
+                                    color="primary"
+                                    variant='outlined'
+                                    onClick={handleBack}
+                                    startIcon={<ArrowBackIcon />}
+                                    sx={{ height: '40px' }}
+                                >
+                                    Back
+                                </Button>
+                            )
+                        }
+                    </Box>
+
                     <Box className={styles.form_steps_wrapper}>
                         {/* step - property type */}
                         {
@@ -251,19 +264,6 @@ const PostNewProperty = () => {
                     </Box>
 
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        {
-                            activeStep !== 0 && (
-                                <Button
-                                    color="primary"
-                                    variant='outlined'
-                                    onClick={handleBack}
-                                    startIcon={<ArrowBackIcon />}
-                                    sx={{ height: '40px' }}
-                                >
-                                    Back
-                                </Button>
-                            )
-                        }
 
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
@@ -274,7 +274,7 @@ const PostNewProperty = () => {
                             onClick={handleNext}
                             sx={{ height: '40px' }}
                         >
-                            {activeStep === steps.length - 1 ? 'Submit Property' : `Go to ${steps[activeStep + 1]}`}
+                            {activeStep === steps.length - 1 ? 'Submit Property' : `Continue to ${steps[activeStep + 1]}`}
                         </Button>
                     </Box>
                 </React.Fragment>
