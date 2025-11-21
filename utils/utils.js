@@ -1,7 +1,6 @@
 import { formFields } from "@/constants/post-property-form";
 import { formStepStates } from "@/constants/post-property-step-states";
-import { isTimeView } from "@mui/x-date-pickers/internals";
-import { validateAddress, validateBuiltupArea, validateCarpetupArea, validateContact, validateEmail, validateFloors, validateLocality, validateName } from './validation'
+import { validateAddress, validateCarpetupArea, validateContact, validateEmail, validateFloors, validateLocality, validateName, validatePositiveNumber } from './validation'
 
 export const formatCurrency = (amount = 0) => {
     return new Intl.NumberFormat('en-IN', {
@@ -68,9 +67,9 @@ export const validateStepFields = (step, formStates, excludeFields) => {
                 const error = validateLocality(value);
                 if (error) inValidFields[key] = error;
             }
-
-            if (key == 'builtUpArea' || key == 'price') {
-                const error = validateBuiltupArea(value);
+            console.log('@@ validation:', key, excludeFields)
+            if (key == 'builtUpArea' || key == 'price' || key == 'securityDeposit') {
+                const error = validatePositiveNumber(value);
                 if (error) inValidFields[key] = error;
             }
             
@@ -79,7 +78,7 @@ export const validateStepFields = (step, formStates, excludeFields) => {
                 if (error) inValidFields[key] = error;
             }
 
-             if (key == 'floors') {
+            if (key == 'floors') {
                 const error = validateFloors(value, formStates?.totalFloors);
                 if (error) inValidFields[key] = error;
             }

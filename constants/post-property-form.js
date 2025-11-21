@@ -16,7 +16,7 @@ export const formFields = {
                     unit: '',
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
                     furnishings: ['Dining Table', 'Washing Machine', 'Cupboard', 'Sofa', 'Microwave', 'Stove', 'Fridge', 'Water Purifier', 'Gas Pipeline', 'Chimney', 'Modular Kitchen', 'Fan', 'Light', 'AC', 'Wardrobe', 'TV', 'Bed', 'Gyser'],   // only when furnishType is furnished, semi-furnished
-                    societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV', 'Club House', 'Community Hall', 'Water Supply'],
+                    societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV', 'Security Guard', 'Club House', 'Community Hall', 'Water Supply'],
                     nearbyList: [],
                     price: '',   // rent monthly
                     availableFrom: '',
@@ -62,7 +62,7 @@ export const formFields = {
                     unit: '',
                     furnishType: ['Fully Furnished', 'Semi Furnished', 'Unfurnished'],
                     furnishings: ['Dining Table', 'Washing Machine', 'Cupboard', 'Sofa', 'Microwave', 'Stove', 'Fridge', 'Water Purifier', 'Gas Pipeline', 'Chimney', 'Modular Kitchen', 'Fan', 'Light', 'AC', 'Wardrobe', 'TV', 'Bed', 'Gyser'],   // only when furnishType is furnished, semi-furnished
-                    societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV', 'Club House', 'Community Hall', 'Water Supply'],
+                    societyAmenities: ['Power Backup', 'Swimming Pool', 'Gym', 'Lift', 'Garden', 'Sports', 'Kids Area', 'CCTV',  'Security Guard', 'Club House', 'Community Hall', 'Water Supply'],
                     nearbyList: [],
                     price: '',   // price
                     availableFrom: '',

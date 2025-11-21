@@ -21,7 +21,7 @@ export const validateAddress = (value) => {
     if (trimmedValue === "") return "Address is required.";
     if (trimmedValue.length < 5) return "Address must be at least 5 characters.";
     if (trimmedValue.length > 200) return "Address must within characters.";
-    if (!/^[a-zA-Z0-9\s,:./-]+$/.test(trimmedValue)) return "Address contains invalid characters.";
+    if (!/^[a-zA-Z0-9\s,&:./-]+$/.test(trimmedValue)) return "Address contains invalid characters.";
     return ''
 }
 
@@ -35,7 +35,7 @@ export const validateLocality = (value) => {
     return ''
 }
 
-export const validateBuiltupArea = (value) => {
+export const validatePositiveNumber = (value) => {
     if (value.includes('e')) return "Entered value should be valid.";
     if (value < 1) return "Entered value should be positive number.";
     return ''

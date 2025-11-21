@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styles from './PostNewProperty.module.css'
 import { styled } from "@mui/material/styles";
-import { Paper, StepConnector, stepConnectorClasses } from '@mui/material';
+import { CircularProgress, Paper, StepConnector, stepConnectorClasses } from '@mui/material';
 import StepPropertyType from './steps/step-property-type/StepPropertyType';
 import StepBasicDetails from './steps/step-basic-details/StepBasicDetails';
 import StepDetailedInfo from './steps/step-detailed-info/StepDetailedInfo';
@@ -48,6 +48,7 @@ const PostNewProperty = () => {
     const router = useRouter();
 
     const [activeStep, setActiveStep] = React.useState(0);
+    const [inProgress, setInProgress] = React.useState(false);
 
     const [formStates, setFormStates] = React.useState({
         lookingTo: '',
@@ -104,19 +105,19 @@ const PostNewProperty = () => {
         let excludeFields = []
         if (formStates?.lookingTo === 'sell') {
             if (formStates?.propertyCategory === 'residential') {
-                excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities', 'securityDepositType']
+                excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities', 'securityDepositType', "securityDeposit",]
             } else {
-                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', 'bhk']
+                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', "securityDeposit", 'bhk']
             }
         }
         if (formStates?.lookingTo === 'rent') {
             if (formStates?.propertyCategory === 'residential') {
                 excludeFields = ['ownership', 'floors', 'possessionStatus', 'propertyCondition', 'totalFloors', 'zoneType', 'carpetArea', 'nearBy', 'furnishings', 'societyAmenities']
             } else {
-                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', 'bhk']
+                excludeFields = ['nearBy', 'furnishType', 'furnishings', 'societyAmenities', 'securityDepositType', "securityDeposit", 'bhk']
             }
         }
-     
+
         const inValidFields = validateStepFields(activeStep, formStates, excludeFields)
         setFormStates((prev) => {
             return { ...prev, inValidFields }
@@ -137,7 +138,7 @@ const PostNewProperty = () => {
 
         // submit form
         if (activeStep === steps.length - 1) {
-            submitForm()
+            return submitForm()
         }
 
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -148,6 +149,7 @@ const PostNewProperty = () => {
 
     const submitForm = async () => {
         console.log('@@ submit form:', formStates)
+        setInProgress(true)
         delete formStates.inValidFields
         delete formStates.isSubmitted
         delete formStates.securityDepositType
@@ -160,10 +162,33 @@ const PostNewProperty = () => {
                 body: JSON.stringify(formStates)
             });
 
-            if (!res.ok) throw new Error("Failed to fetch properties");
+            if (!res.ok) {
+                setInProgress(false)
+                throw new Error("Failed to fetch properties");
+            }
+
+            setInProgress(false)
+            enqueueSnackbar('Property submitted successfully!', {
+                variant: 'success',
+                action: (snackbarId) => (
+                    <button className={styles.dismiss} onClick={() => { closeSnackbar(snackbarId) }}>
+                        Dismiss
+                    </button>
+                )
+            })
+
             return res.json();
         } catch (error) {
             console.log('api error:', error)
+            setInProgress(false)
+            enqueueSnackbar('Something went wrong, Try again!', {
+                variant: 'error',
+                action: (snackbarId) => (
+                    <button className={styles.dismiss} onClick={() => { closeSnackbar(snackbarId) }}>
+                        Dismiss
+                    </button>
+                )
+            })
         }
     }
 
@@ -225,7 +250,7 @@ const PostNewProperty = () => {
             ) : (
                 <React.Fragment>
 
-                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                         {
                             activeStep !== 0 && (
                                 <Button
@@ -266,16 +291,32 @@ const PostNewProperty = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
 
                         <Box sx={{ flex: '1 1 auto' }} />
-                        <Button
-                            color="primary"
-                            size="medium"
-                            variant='contained'
-                            endIcon={<ArrowForwardIcon />}
-                            onClick={handleNext}
-                            sx={{ height: '40px' }}
-                        >
-                            {activeStep === steps.length - 1 ? 'Submit Property' : `Continue to ${steps[activeStep + 1]}`}
-                        </Button>
+
+                        {
+                            inProgress ?
+                                <Button
+                                    color="primary"
+                                    size="medium"
+                                    variant='contained'
+                                    sx={{ height: '50px', fontSize: '1.2rem', width: '200px', '&:hover': {cursor: 'default', backgroundColor: '#1fab89', boxShadow: 'none'} }}
+                                >
+                                    <CircularProgress color="white" enableTrackSlot size="30px" />
+                                </Button>
+                                : (
+
+                                    <Button
+                                        color="primary"
+                                        size="medium"
+                                        variant='contained'
+                                        endIcon={<ArrowForwardIcon sx={ inProgress ? {color: 'red'} : {}} />}
+                                        onClick={handleNext}
+                                        sx={{ height: '50px', fontSize: '1.2rem' }}
+                                    >
+                                        {activeStep === steps.length - 1 ? 'Submit Property' : `Continue to ${steps[activeStep + 1]}`}
+                                    </Button>
+                                )
+                        }
+
                     </Box>
                 </React.Fragment>
             )}

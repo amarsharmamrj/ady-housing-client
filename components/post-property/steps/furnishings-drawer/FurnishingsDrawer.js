@@ -56,14 +56,14 @@ const FurnishingsDrwaer = ({ open, toggleDrawer, getState, setState, type = 'soc
                 <FormGroup
                     aria-labelledby="select amenities"
                     name="amenities"
-                    className={`${styles.checkbox_group} ${styles.furnishings}`}
+                    className={`${styles.drawer_checkbox_group} ${styles.furnishings}`}
                 >
                     {
                         formFields?.lookingTo?.rent?.propertyCategory?.residential?.[type]?.map((item) => {
                             return (
                                 <FormControlLabel
                                     key={item}
-                                    className={`${styles.checkbox_label} ${getState?.[type]?.includes(item) ? styles.selected : ""}`}
+                                    className={`${styles.drawer_checkbox_label} ${getState?.[type]?.includes(item) ? styles.selected : ""}`}
                                     value={item}
                                     label={item}
                                     control={<Checkbox checked={getState?.[type]?.includes(item)} onChange={(e) => handleFurnishingsChange(e)} />}

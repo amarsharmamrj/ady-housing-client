@@ -33,6 +33,7 @@
 .form_row_wrapper {
     display: flex;
     gap: 1rem;
+    /* flex-wrap: wrap; */
     justify-content: space-between;
 }
 
@@ -118,8 +119,20 @@
     justify-content: flex-start;
 }
 
-.checkbox_group.furnishings {
-    justify-content: space-between;
+.drawer_checkbox_group {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.drawer_checkbox_label {
+    margin: 0 !important;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 160px;
+    max-width: 160px;
 }
 
 .checkbox_label {
@@ -195,15 +208,24 @@
         padding: 0.2rem 0.5rem;
     }
 
-     .checkbox_group {
+    .radio_group {
+        gap: 0.5em;
+    }
+
+    .checkbox_group {
         overflow: scroll hidden;
         flex-wrap: nowrap;
+        gap: 0.7rem;
     }
 
     .checkbox_label {
-        padding: 0.2rem 0.2rem;
-        min-width: 150px;
+        padding: 0.2rem 0rem;
+        min-width: 140px;
         max-width: 160px;
+    }
+
+    .drawer_checkbox_group {
+        justify-content: center;
     }
 
     .post_property label.row {

@@ -34,6 +34,7 @@ export const formStepStates = {
     step4: {
         price: '',
         availableFrom: '',
-        securityDepositType: ''
+        securityDepositType: '',
+        securityDeposit: '',
     }
 }

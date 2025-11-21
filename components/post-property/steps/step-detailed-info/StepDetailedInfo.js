@@ -79,22 +79,22 @@ const StepDetailedInfo = ({ getState, setState }) => {
                             name="furnishType"
                             value={getState?.furnishType}
                             onChange={handleOnChange}
-                            className={styles.radio_group}
+                            className={styles.checkbox_group}
                         >
                             <FormControlLabel
-                                className={`${styles.radio_label} ${getState?.furnishType === "fully_furnished" ? styles.selected : ""}`}
+                                className={`${styles.checkbox_label} ${getState?.furnishType === "fully_furnished" ? styles.selected : ""}`}
                                 value="fully_furnished"
                                 control={<Radio />}
                                 label="Fully Furnished"
                             />
                             <FormControlLabel
-                                className={`${styles.radio_label} ${getState?.furnishType === "semi_furnished" ? styles.selected : ""}`}
+                                className={`${styles.checkbox_label} ${getState?.furnishType === "semi_furnished" ? styles.selected : ""}`}
                                 value="semi_furnished"
                                 control={<Radio />}
                                 label="Semi Furnished"
                             />
                             <FormControlLabel
-                                className={`${styles.radio_label} ${getState?.furnishType === "unfurnished" ? styles.selected : ""}`}
+                                className={`${styles.checkbox_label} ${getState?.furnishType === "unfurnished" ? styles.selected : ""}`}
                                 value="unfurnished"
                                 control={<Radio />}
                                 label="Unfurnished"
@@ -115,7 +115,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                                 variant="body"
                                 onClick={() => openDrawer('furnishings')}
                             >
-                                {`${getState?.furnishings?.length > 0 ? 'Edit' : 'Add'} Furnishigs`}
+                                {`${getState?.furnishings?.length > 0 ? 'Edit' : 'Add'}`}
                                 {getState?.furnishings?.length > 0 ? <EditIcon /> : <AddIcon />}
                             </Link>
                         </FormLabel>
@@ -146,7 +146,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                                 variant="body"
                                 onClick={() => openDrawer('societyAmenities')}
                             >
-                                {`${getState?.societyAmenities?.length > 0 ? 'Edit' : 'Add'} Society Amenities`}
+                                {`${getState?.societyAmenities?.length > 0 ? 'Edit' : 'Add'}`}
                                 {getState?.societyAmenities?.length > 0 ? <EditIcon /> : <AddIcon />}
                             </Link>
                         </Box>

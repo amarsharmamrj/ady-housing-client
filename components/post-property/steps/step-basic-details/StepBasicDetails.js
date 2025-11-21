@@ -180,7 +180,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                 {/* built-up area */}
                 {shouldVisible(getState, 'builtUpArea') &&
                     <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'builtUpArea') && styles.row_error}`}>
-                        <FormLabel>Built-up Area <span className="star">*</span></FormLabel>
+                        <FormLabel>Builtup Area <span className="star">*</span></FormLabel>
                         <TextField
                             type="number"
                             name="builtUpArea"
