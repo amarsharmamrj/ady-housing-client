@@ -44,16 +44,6 @@ const StepDetailedInfo = ({ getState, setState }) => {
         console.log('@@:', value)
     }
 
-    const handleBhkChange = (e) => {
-        const value = e.target.value
-        console.log('@@ value:', value)
-        setState((prev) => {
-            return { ...prev, bhk: value }
-        })
-
-    }
-
-
     const handleNearbyChange = (event, newValue) => {
         if (newValue.length <= 5) {
             setState((prev) => {
@@ -228,6 +218,7 @@ const StepDetailedInfo = ({ getState, setState }) => {
                             </MenuItem>
                         ))}
                     </Select>
+                    {Object.hasOwn(getState?.inValidFields, 'bhk') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.bhk}</FormHelperText>}
                 </FormControl>
             }
 

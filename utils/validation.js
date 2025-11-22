@@ -36,7 +36,7 @@ export const validateLocality = (value) => {
 }
 
 export const validatePositiveNumber = (value) => {
-    if (value.includes('e')) return "Entered value should be valid.";
+    console.log('@@ value:', value)
     if (value < 1) return "Entered value should be positive number.";
     return ''
 }

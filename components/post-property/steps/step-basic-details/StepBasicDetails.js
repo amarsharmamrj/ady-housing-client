@@ -172,6 +172,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             <MenuItem value={'noida'}>Noida</MenuItem>
                             <MenuItem value={'greater-noida'}>Greater Noida</MenuItem>
                         </Select>
+                        {Object.hasOwn(getState?.inValidFields, 'city') && <FormHelperText className={styles.errorText}>{getState?.inValidFields?.city}</FormHelperText>}
                     </FormControl>
                 }
             </Box>

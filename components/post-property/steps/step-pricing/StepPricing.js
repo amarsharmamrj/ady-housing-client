@@ -9,6 +9,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import { formFields } from '@/constants/post-property-form';
 import { shouldVisible } from '@/utils/utils';
+import UploadWidget from '../upload-widget/UploadWidget';
 
 const StepPricing = ({ getState, setState }) => {
 
@@ -51,12 +52,27 @@ const StepPricing = ({ getState, setState }) => {
         })
     }
 
+    const handleUploadImages = (e) => {
+        const files = e.target.files
+
+        // let images = []
+        // for(let i = 0; i < files.length; i++) {
+        //     images.push(files[i]);
+        // }
+        // console.log('@@ file:', images,Array.isArray(images), images?.length)
+
+        setState((prev) => {
+            delete prev?.inValidFields['images']
+            return { ...prev, images: [...files] }
+        })
+    }
+
     return (
         <>
             <Box className={styles.form_row_wrapper}>
                 {/* price */}
                 <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'price') && styles.row_error}`}>
-                    <FormLabel> {getState?.lookingTo === 'rent' ? 'Rent (per month)' :'Property Price'} <span className="star">*</span></FormLabel>
+                    <FormLabel> {getState?.lookingTo === 'rent' ? 'Rent (per month)' : 'Property Price'} <span className="star">*</span></FormLabel>
                     <TextField
                         type="number"
                         name="price"
@@ -133,12 +149,28 @@ const StepPricing = ({ getState, setState }) => {
                     <FormLabel>Available From <span className="star">*</span></FormLabel>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
-                            <DatePicker disablePast={true} value={dayjs(getState?.availableFrom)} onChange={handleDateChange} />
+                            <DatePicker disablePast={true} value={dayjs(getState?.availableFrom)} format="DD/MM/YYYY" onChange={handleDateChange} />
                         </DemoContainer>
                     </LocalizationProvider>
                 </FormControl>
                 {/* } */}
             </Box>
+
+            {/* upload images */}
+            <Box className={styles.form_row_wrapper}>
+                <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'availableFrom') && styles.row_error}`}>
+                    <FormLabel>Available From <span className="star">*</span></FormLabel>
+                    <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleUploadImages}
+                    />
+
+                </FormControl>
+            </Box>
+
+            <UploadWidget />
         </>
     )
 }

@@ -80,7 +80,7 @@ const PostNewProperty = () => {
         floors: '',
 
         price: '',
-        availableFrom: '',
+        availableFrom: new Date(),
         securityDepositType: '',
         securityDeposit: '',
         // shareWithAgents create
@@ -123,6 +123,8 @@ const PostNewProperty = () => {
             return { ...prev, inValidFields }
         })
         console.log('@@ inValidFields:', inValidFields)
+        console.log('@@ formStates:', formStates)
+
         const isActiveStepValid = Object.keys(inValidFields)?.length == 0
 
         if (!isActiveStepValid) {
@@ -144,7 +146,6 @@ const PostNewProperty = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         router.push(`/post-property?step=${activeStep + 2}`);
 
-        console.log('@@ formStates:', formStates)
     };
 
     const submitForm = async () => {
@@ -153,13 +154,30 @@ const PostNewProperty = () => {
         delete formStates.inValidFields
         delete formStates.isSubmitted
         delete formStates.securityDepositType
+
+        const fd = new FormData();
+
+        // append normal fields
+        Object.keys(formStates).forEach((key) => {
+            if (key !== "images") {
+                fd.append(key, formStates[key]);
+            }
+        });
+
+        // append files
+        formStates.images.forEach((file) => {
+            fd.append("images", file);
+        });
+
         try {
             const res = await fetch("http://localhost:4000/api/property", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formStates)
+                // headers: {
+                //     "Content-Type": "multipart/form-data"
+                //     // "Content-Type": "application/json"
+                // },
+                body: fd
+                // body: JSON.stringify(formStates)
             });
 
             if (!res.ok) {
@@ -298,7 +316,7 @@ const PostNewProperty = () => {
                                     color="primary"
                                     size="medium"
                                     variant='contained'
-                                    sx={{ height: '50px', fontSize: '1.2rem', width: '200px', '&:hover': {cursor: 'default', backgroundColor: '#1fab89', boxShadow: 'none'} }}
+                                    sx={{ height: '50px', fontSize: '1.2rem', width: '200px', '&:hover': { cursor: 'default', backgroundColor: '#1fab89', boxShadow: 'none' } }}
                                 >
                                     <CircularProgress color="white" enableTrackSlot size="30px" />
                                 </Button>
@@ -308,7 +326,7 @@ const PostNewProperty = () => {
                                         color="primary"
                                         size="medium"
                                         variant='contained'
-                                        endIcon={<ArrowForwardIcon sx={ inProgress ? {color: 'red'} : {}} />}
+                                        endIcon={<ArrowForwardIcon sx={inProgress ? { color: 'red' } : {}} />}
                                         onClick={handleNext}
                                         sx={{ height: '50px', fontSize: '1.2rem' }}
                                     >

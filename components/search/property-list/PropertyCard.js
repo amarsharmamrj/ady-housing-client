@@ -8,7 +8,7 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import Link from "next/link";
 
 const PropertyCard = ({ property }) => {
-    const { _id, name, buildingName, price, societyAmenities: amenities, images, builtUpArea: area, bedrooms=2, bathrroms=4 } = property
+    const { _id, name, buildingName, price, societyAmenities: furnishings, images, builtUpArea: area, bedrooms=2, bathrroms=4 } = property
 
     return (
         <Grid size={{ xs: 12, md: 6 }}>
@@ -28,7 +28,7 @@ const PropertyCard = ({ property }) => {
                     <Box className={styles.details_wrapper}>
                         <Typography className={styles.price} variant="p">{formatCurrency(price)}</Typography>
                         <Typography className={styles.name} variant="h4">{buildingName}</Typography>
-                        <Typography className={styles.amenities} variant="span">{amenities.join(', ')}</Typography>
+                        <Typography className={styles.amenities} variant="span">{furnishings.join(', ')}</Typography>
 
                         <Divider className={styles.divider} />
                         <Box className={styles.features}>
