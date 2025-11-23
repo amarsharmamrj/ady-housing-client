@@ -52,14 +52,8 @@ const StepPricing = ({ getState, setState }) => {
         })
     }
 
-    const handleUploadImages = (e) => {
-        const files = e.target.files
-
-        // let images = []
-        // for(let i = 0; i < files.length; i++) {
-        //     images.push(files[i]);
-        // }
-        // console.log('@@ file:', images,Array.isArray(images), images?.length)
+    const handleUploadImages = (files) => {
+        // const files = e.target.files
 
         setState((prev) => {
             delete prev?.inValidFields['images']
@@ -159,18 +153,11 @@ const StepPricing = ({ getState, setState }) => {
             {/* upload images */}
             <Box className={styles.form_row_wrapper}>
                 <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'availableFrom') && styles.row_error}`}>
-                    <FormLabel>Available From <span className="star">*</span></FormLabel>
-                    <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleUploadImages}
-                    />
-
+                    <FormLabel>Add Photos</FormLabel>
+                    <UploadWidget handleUploadImages={handleUploadImages} />
                 </FormControl>
             </Box>
 
-            <UploadWidget />
         </>
     )
 }
