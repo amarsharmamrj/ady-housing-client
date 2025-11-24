@@ -1,6 +1,6 @@
 "use client";
 
-import { FormControl, FormLabel, TextField, Box, Select, MenuItem, FormHelperText, FormControlLabel, RadioGroup, Radio } from '@mui/material'
+import { FormControl, FormLabel, TextField, Box, FormHelperText, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -53,8 +53,6 @@ const StepPricing = ({ getState, setState }) => {
     }
 
     const handleUploadImages = (files) => {
-        // const files = e.target.files
-
         setState((prev) => {
             delete prev?.inValidFields['images']
             return { ...prev, images: [...files] }
@@ -154,7 +152,7 @@ const StepPricing = ({ getState, setState }) => {
             <Box className={styles.form_row_wrapper}>
                 <FormControl fullWidth className={`${styles.form_item_wrapper} ${Object.hasOwn(getState?.inValidFields, 'availableFrom') && styles.row_error}`}>
                     <FormLabel>Add Photos</FormLabel>
-                    <UploadWidget handleUploadImages={handleUploadImages} />
+                    <UploadWidget handleUploadImages={handleUploadImages} images={getState?.images} />
                 </FormControl>
             </Box>
 

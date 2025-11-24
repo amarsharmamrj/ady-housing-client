@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material"
 import styles from '../../PostNewProperty.module.css'
 import { formFields } from "@/constants/post-property-form"
 
@@ -20,8 +20,6 @@ const StepPropertyType = ({ getState, setState }) => {
             })
         }
     }
-
-    const error = 'This field is required.'
 
     return (
         <>

@@ -160,10 +160,6 @@
     border: 2px solid #f76b6b;
 }
 
-/* .row_error :global(.MuiSelect-root) {
-    border: 2px solid #f76b6b;
-} */
-
 .row_error :global(.MuiOutlinedInput-root):hover fieldset,
 .row_error :global(.MuiPickersOutlinedInput-root):hover fieldset {
     border: 2px solid #b60505;
@@ -184,14 +180,9 @@
     background-color: rgb(31 171 137 / 0.1);
 }
 
-.error {
-    /* color: red; */
-}
-
 .errorText {
     color: #e41313;
 }
-
 
 /* ####################### MOBILE BREAKPOINTS ######################## */
 @media (max-width:600px) {
@@ -236,5 +227,4 @@
     .error_message {
         margin-top: 1em;
     }
-
 }

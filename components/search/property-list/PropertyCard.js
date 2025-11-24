@@ -8,7 +8,7 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import Link from "next/link";
 
 const PropertyCard = ({ property }) => {
-    const { _id, name, buildingName, price, societyAmenities: furnishings, images, builtUpArea: area, bedrooms=2, bathrroms=4 } = property
+    const { name, buildingName, price, societyAmenities: furnishings, images, builtUpArea: area, bedrooms=2, bathrroms=4 } = property
 
     return (
         <Grid size={{ xs: 12, md: 6 }}>

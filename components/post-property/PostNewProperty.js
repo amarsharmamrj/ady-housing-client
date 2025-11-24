@@ -16,7 +16,7 @@ import StepDetailedInfo from './steps/step-detailed-info/StepDetailedInfo';
 import StepPricing from './steps/step-pricing/StepPricing';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { validateStepFields } from '@/utils/utils';
 import { SnackbarProvider, closeSnackbar, enqueueSnackbar } from 'notistack'
 
@@ -49,6 +49,7 @@ const PostNewProperty = () => {
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [inProgress, setInProgress] = React.useState(false);
+    const [formSuccess, setFormSuccess] = React.useState(false);
 
     const [formStates, setFormStates] = React.useState({
         lookingTo: '',
@@ -88,12 +89,7 @@ const PostNewProperty = () => {
         inValidFields: {},
         isSubmitted: false,
 
-        images: [
-            "https://images.pexels.com/photos/2783862/pexels-photo-2783862.jpeg",
-            "https://images.pexels.com/photos/290275/pexels-photo-290275.jpeg",
-            "https://images.pexels.com/photos/188035/pexels-photo-188035.jpeg",
-            "https://images.pexels.com/photos/1398760/pexels-photo-1398760.jpeg"
-        ]
+        images: []
     })
 
     const handleNext = () => {
@@ -122,8 +118,7 @@ const PostNewProperty = () => {
         setFormStates((prev) => {
             return { ...prev, inValidFields }
         })
-        console.log('@@ inValidFields:', inValidFields)
-        console.log('@@ formStates:', formStates)
+        console.log('@@ form states:', formStates)
 
         const isActiveStepValid = Object.keys(inValidFields)?.length == 0
 
@@ -145,11 +140,9 @@ const PostNewProperty = () => {
 
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         router.push(`/post-property?step=${activeStep + 2}`);
-
     };
 
     const submitForm = async () => {
-        console.log('@@ submit form:', formStates)
         setInProgress(true)
         delete formStates.inValidFields
         delete formStates.isSubmitted
@@ -186,6 +179,7 @@ const PostNewProperty = () => {
             }
 
             setInProgress(false)
+            setFormSuccess(true)
             enqueueSnackbar('Property submitted successfully!', {
                 variant: 'success',
                 action: (snackbarId) => (
@@ -194,6 +188,7 @@ const PostNewProperty = () => {
                     </button>
                 )
             })
+            router.push('/dashboard')
 
             return res.json();
         } catch (error) {
@@ -311,14 +306,16 @@ const PostNewProperty = () => {
                         <Box sx={{ flex: '1 1 auto' }} />
 
                         {
-                            inProgress ?
+                            inProgress || formSuccess ?
                                 <Button
                                     color="primary"
                                     size="medium"
                                     variant='contained'
                                     sx={{ height: '50px', fontSize: '1.2rem', width: '200px', '&:hover': { cursor: 'default', backgroundColor: '#1fab89', boxShadow: 'none' } }}
                                 >
-                                    <CircularProgress color="white" enableTrackSlot size="30px" />
+                                    {
+                                        formSuccess ? 'Redirecting...' : <CircularProgress color="white" enableTrackSlot size="30px" />
+                                    }
                                 </Button>
                                 : (
 

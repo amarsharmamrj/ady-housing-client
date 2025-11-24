@@ -24,7 +24,6 @@ const FurnishingsDrwaer = ({ open, toggleDrawer, getState, setState, type = 'soc
                 return { ...prev, [type]: newFurnishings }
             })
         }
-        console.log('@@ getState:', getState)
     }
 
     return (

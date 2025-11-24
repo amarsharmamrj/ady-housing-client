@@ -1,14 +1,11 @@
-import { FormControl, Checkbox, Autocomplete, Chip, FormLabel, TextField, Typography, Box, Select, MenuItem, FormControlLabel, FormGroup, RadioGroup, Radio, Button, IconButton, Link, ListItemText, FormHelperText } from '@mui/material'
+import { FormControl, Checkbox, Autocomplete, Chip, FormLabel, TextField, Box, Select, MenuItem, FormControlLabel, FormGroup, RadioGroup, Radio, Button, IconButton, Link, ListItemText, FormHelperText } from '@mui/material'
 import styles from '../../PostNewProperty.module.css'
-import { amenitiesList } from '@/constants/amenities'
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useState } from 'react';
 import FurnishingsDrwaer from '../furnishings-drawer/FurnishingsDrawer';
 import { shouldVisible } from '@/utils/utils';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import { formFields } from '@/constants/post-property-form';
-import { TryRounded } from '@mui/icons-material';
 
 const StepDetailedInfo = ({ getState, setState }) => {
     const [openFurnishings, setOpenFurnishings] = useState(false)
@@ -34,14 +31,11 @@ const StepDetailedInfo = ({ getState, setState }) => {
 
     const handleFloorsChange = (e) => {
         const value = e.target.value
-
         if (value?.length <= getState?.totalFloors) {
             setState((prev) => {
                 return { ...prev, floors: value }
             })
         }
-
-        console.log('@@:', value)
     }
 
     const handleNearbyChange = (event, newValue) => {

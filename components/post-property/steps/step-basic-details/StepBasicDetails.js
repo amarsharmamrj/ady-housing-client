@@ -14,8 +14,6 @@ const StepBasicDetails = ({ getState, setState }) => {
         })
     }
 
-    console.log('@@ invalidFields:', getState?.inValidFields)
-
     return (
         <>
             {shouldVisible(getState, 'name') &&
@@ -95,7 +93,7 @@ const StepBasicDetails = ({ getState, setState }) => {
                             name="buildingName"
                             value={getState?.buildingName}
                             onChange={handleOnChange}
-                            placeholder="Enter your full buildingName"
+                            placeholder="Enter builiding name"
                             slotProps={{
                                 htmlInput: {
                                     maxLength: 100
