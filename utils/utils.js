@@ -13,11 +13,11 @@ export const formatCurrency = (amount = 0) => {
 
 export const formatIndianNumber = (num) => {
     if (num >= 1e7) {
-        return (num / 1e7).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' ' + 'Cr';
+        return '₹ ' + (num / 1e7).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' ' + 'Cr';
     } else if (num >= 1e5) {
-        return (num / 1e5).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' ' + 'L';
+        return '₹ ' + (num / 1e5).toLocaleString('en-IN', { maximumFractionDigits: 1 }) + ' ' + 'Lac';
     } else {
-        return num.toLocaleString('en-IN');
+        return '₹ ' + num.toLocaleString('en-IN');
     }
 }
 

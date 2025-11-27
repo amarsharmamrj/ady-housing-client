@@ -17,6 +17,7 @@ async function getProperties() {
 
 const SearchComp = async () => {
     const properties = await getProperties();
+    console.log('@@ properties:', properties)
 
     return (
         <Grid container>

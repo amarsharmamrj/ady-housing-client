@@ -1,14 +1,23 @@
-import { Box, Divider, Grid, Typography } from "@mui/material"
+import { Box, Button, Divider, Grid, Typography } from "@mui/material"
 import Image from "next/image"
 import styles from './PropertyList.module.css'
-import { formatCurrency } from "@/utils/utils"
+import { formatCurrency, formatIndianNumber } from "@/utils/utils"
 import BorderOuterIcon from '@mui/icons-material/BorderOuter';
 import BedIcon from '@mui/icons-material/Bed';
-import BathtubIcon from '@mui/icons-material/Bathtub';
+import MoneyIcon from '@mui/icons-material/Money';
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import CallIcon from '@mui/icons-material/Call';
 import Link from "next/link";
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
+const timeAgo = new TimeAgo('en-US')
 
 const PropertyCard = ({ property }) => {
-    const { name, buildingName, price, societyAmenities: furnishings, images, builtUpArea: area, bedrooms=2, bathrroms=4 } = property
+    const { name, buildingName, propertySubCategory, locality, city, price, bhk,
+        propertyCategory, unit, totalFloors, updatedAt, 
+        furnishings, images, builtUpArea: area, bedrooms = 2, bathrroms = 4,
+    } = property
 
     return (
         <Grid size={{ xs: 12, md: 6 }}>
@@ -26,27 +35,67 @@ const PropertyCard = ({ property }) => {
                     </Box>
 
                     <Box className={styles.details_wrapper}>
-                        <Typography className={styles.price} variant="p">{formatCurrency(price)}</Typography>
                         <Typography className={styles.name} variant="h4">{buildingName}</Typography>
-                        <Typography className={styles.amenities} variant="span">{furnishings.join(', ')}</Typography>
+                        <Typography className={styles.desc} variant="h5">
+                            <span className={styles.innerText}>{propertySubCategory}</span> in
+                            <span className={styles.innerText}> {locality}</span>,
+                            <span className={styles.innerText}> {city}</span>
+                        </Typography>
 
-                        <Divider className={styles.divider} />
                         <Box className={styles.features}>
-                            <Typography className={styles.feature} variant="span">
+
+                            <div className={styles.featureCard}>
+                                <MoneyIcon />
+                                <Typography className={styles.feature} variant="span"><b>{formatIndianNumber(price)}</b></Typography>
+                            </div>
+
+                            <div className={styles.featureCard}>
                                 <BorderOuterIcon />
-                                {area} sqrt.
-                            </Typography>
-                            <Typography className={styles.separater} variant="span">|</Typography>
+                                <Typography className={styles.feature} variant="span">{`${area} (${unit === 'square-feet' ? 'sq. ft.' : unit})`}</Typography>
+                            </div>
 
-                            <Typography className={styles.feature} variant="span">
-                                <BedIcon />
-                                {bedrooms} Beds</Typography>
-                            <Typography className={styles.separater} variant="span">|</Typography>
+                            {
+                                propertyCategory === 'residential' ? (
+                                    <div className={styles.featureCard}>
+                                        <BedIcon />
+                                        <Typography className={styles.feature} variant="span">{bhk}</Typography>
+                                    </div>
+                                ) : (
+                                    <div className={styles.featureCard}>
+                                        <DomainAddIcon />
+                                        <Typography className={styles.feature} variant="span">{totalFloors} Floors</Typography>
+                                    </div>
+                                )
+                            }
 
-                            <Typography className={styles.feature} variant="span">
-                                <BathtubIcon />
-                                {bathrroms} Baths
-                            </Typography>
+                        </Box>
+                    </Box>
+
+                    <Box className={styles.footer}>
+
+                        <Box className={styles.posted}>
+                            <Typography className={styles.postedText} variant="p">Posted</Typography>
+                            <Typography className={styles.postedValue} variant="p"><b>{timeAgo.format(new Date(updatedAt))}</b></Typography>
+                        </Box>
+
+                        <Box>
+                            <Button
+                                color="primary"
+                                variant='outlined'
+                                // onClick={handleBack}
+                                sx={{ height: '40px', marginRight: { xs: '0.5rem', md: '1rem' } }}
+                            >
+                                View Details
+                            </Button>
+                            <Button
+                                color="primary"
+                                variant='contained'
+                                // onClick={handleBack}
+                                startIcon={<CallIcon />}
+                                sx={{ height: '40px' }}
+                            >
+                                Contact
+                            </Button>
                         </Box>
                     </Box>
                 </Box>
